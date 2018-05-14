@@ -1,6 +1,8 @@
 # dependencies
 /node_modules
 
+/dist
+
 # production
 /server/public/dist
 /server/public/assets/ignore

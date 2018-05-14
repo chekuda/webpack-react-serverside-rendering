@@ -1,14 +1,13 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 
-import App from '../../src/App'
+import App from '../../src/App/App'
 
 const map = (req, res) => {
-
   const appToString = renderToString(<App/>)
 
   const templateData = {
-    body: appToString
+    initialHtml: appToString
   }
 
   res.render('index', templateData)
