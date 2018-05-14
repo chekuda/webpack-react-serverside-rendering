@@ -12,3 +12,10 @@
   - Install and set up express
   - Set up the routes and controllers
   - Set up views. Im going to use handlebars as views engine
+
+## Install React
+
+  - Install React and react-dom
+  - Add preset-react to babelrc for render react
+  - Create first component in react (App)
+  - Import the component in the controller and use `renderToString` in order to pass the whole string with the react markup within it.

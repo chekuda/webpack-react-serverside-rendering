@@ -17,9 +17,7 @@ server.engine('handlebars', exphbs(exphbsConfig))
 server.set('views', exphbsConfig.layoutsDir)
 server.set('view engine', 'handlebars')
 
-server.use('/map', routes)
-
-server.get('/', (req, res) => res.render('index'))
+server.use('/', routes)
 
 server.listen(port, () => {
   console.log('Listen on port', port)
