@@ -1,5 +1,5 @@
 require('./index.css')
 const test = (...arg) => {
-  console.log('jose')
+  console.log('joset')
   return arg
 }
