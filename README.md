@@ -1,6 +1,7 @@
 # REACT-GOOGLE-MAPS
 
 ## Install and set up webpack
+
   - Set up dev and prod environments
   - Install and setUp babel
   - Resolve css imports with minicssextractplugin in prod and style-loader in dev(HMR)
@@ -9,6 +10,7 @@
   - Install `html-webpack-plugin` in order to build the final html with the final bundle and css. Node: This will be the template for express to serve the initialHTML.
 
 ## Install and setUp express for SSR
+
   - Install babel-register
   - Install and set up express
   - Set up the routes and controllers
@@ -21,3 +23,60 @@
   - Add preset-react to babelrc for render react
   - Create first component in react (App)
   - Import the component in the controller and use `renderToString` in order to pass the whole string with the react markup within it.
+
+## Make it work with not hot reloaded
+
+  - Create the bundle with `npm run dev`
+  - The physical bundle.js, main.css and index.handlebars will be created in `dist` folder
+  - Now is time to Run `npm start`. This will run the server, serving what we have in our routes which will serve our `index.handlebar` already created.
+  - The server will be kicked out only the first time which will serve all the bundle and the view required. In the client, react will handle all the views rendering.
+
+## Implement HMR
+
+# React Hot Loader
+
+  - How it works?
+  Then the HMR runtime receives an updated module, it first checks to see if the module knows how to update itself. It then goes up the import/require chain, lookinf dor a parent module that can accept the update. The added code allows our root component to accept an update from any child component.
+
+  `Note that the internal state will not be preserved, since a new copy of the component has been mounted. State that is kept externally in a state store, such a Redux.`
+
+  - Preserve the internal state
+  I need to adda react-hot-loader. I have to ways of doing it.
+  1. By .babelsrc
+    ```
+    {
+      "plugins": ["react-hot-loader/babel]
+    }
+    ```
+
+  2. By webpack
+    ```
+    {
+      loaders: [{
+        test: /\.(js|jsx)$/,]
+        loaders: ['react-hot-loader/webpack', 'babel'],
+        include: path.join(__dirname, 'src')
+      }]
+    }
+    ```
+
+  `Note: react-hot-loader/webpack only works in exported components, whereas react-hot-loader/babel picks up all top-level variables in your files. As a workaround, with webpack, you can export all the components whose state you want to maintain, even if they are not imported anywere else.`
+
+  3. Add this lines in your webpack entry point.
+    ```
+    {
+      entry: [ 
+        'react-hot-loader/patch', // RHL patch
+      './scripts/index' // Your appʼs entry point
+      ]
+    }
+    ```
+
+  4. Wrap my entry file with a top-level component provided by RHL called `<AppContainer>` which hanle hot reloading as well as error handling. Also handles disabling hot reloading/error handling when running in production environment.
+
+  `Note: If I dont want to duplicate the require in the entry component, I will have to put `modules: false` in my .babelsrc`
+
+  ```
+    [ "env", { "modules": false } ],
+  ```
+
