@@ -1,11 +1,11 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { hydrate } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
 import App from './App'
 
 const render = Component => {
-  ReactDOM.render(
+  hydrate(
     <AppContainer>
       <Component />
     </AppContainer>,
@@ -17,6 +17,7 @@ render(App)
 
 if(module.hot) {
   module.hot.accept('./App', () => {
+    const App = require('./App').default;
     render(App)
   })
 }

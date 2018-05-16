@@ -7,6 +7,10 @@ import routes from './routes'
 
 const server = express()
 
+if(process.env.ENV !== 'prod') {
+  require('./middleware/expresswebpack.js').default(server)
+}
+
 const port = process.env.PORT || 3000
 
 const exphbsConfig = {
@@ -20,7 +24,9 @@ server.set('view engine', 'handlebars')
 
 server.use('/dist', express.static('dist'))
 
-server.use('/', routes)
+server.use((req, res, next) => {
+  require('./routes').default(req, res, next)
+})
 
 server.listen(port, () => {
   console.log('Listen on port', port)

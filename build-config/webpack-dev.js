@@ -1,15 +1,19 @@
+import webpack from 'webpack'
+import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
+
+import commonPaths from './common-paths'
+
 module.exports = {
-  module: {
-    entry: [
-      'react-hot-loader/patch', // RHL patch
-      './src/index.js'
-    ],
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        loaders: ['react-hot-loader/webpack', 'babel'],
-        include: path.join(__dirname, '../src')
-      }
-    ]
-  }
+  entry: [
+    'react-hot-loader/patch', // RHL patch
+    'webpack-hot-middleware/client', // HRM in client side
+    './src/index.js'
+  ],
+  plugins: [
+    new HtmlWebpackHarddiskPlugin({
+      outputPath: commonPaths.publicPath
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  mode: 'development'
 }

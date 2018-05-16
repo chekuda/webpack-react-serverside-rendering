@@ -80,3 +80,56 @@
     [ "env", { "modules": false } ],
   ```
 
+  `Note: Another option is require the module within the index.js when module.hot and not use modules:false`
+
+  ```
+  if(module.hot) {
+    module.hot.accept('./App', () => {
+      const App = require('./App').default;
+      render(App)
+    })
+  }
+  ```
+
+# Add a webpack middleware configuration
+
+  - All this Hot loader will be used in dev mode
+  - As nodemon would restart the server, I need to reload the component which has been changed in dev mode and served in runtime. Thats why we need this hot loader.
+  - In order to make this works, Im going to install and set up:
+    - `webpack-dev-middleware`: An express-style development middleware for use with webpack bundles and allows for serving of the files emitted from webpack. This should be used for development only.
+    - `webpack-hot-middleware`: Webpack hot reloading using only webpack-dev-middleware. This allows you to add hot reloading into an existing server without webpack-dev-server.
+    - Specific webpack configuration
+
+  - First I need to set up the `webpack.config.server.js` file.
+    - NOTE:
+      - I need to `target node` as this is only for server
+      - I need to use `nodeExternals` for ignores node_modules when bundling in Webpack.
+      - Add some plugins (ask nick)
+
+  - Second I need to config the `expresswebpack` file:
+
+  - Then I need to add the middleware to my server file with a `only in dev` flag
+    ```
+    if(process.env.ENV !== 'prod') {
+      require('./middleware/expresswebpack.js').default(server)
+    }
+    ```
+
+  - Interesting plugins:
+    - new webpack.HotModuleReplacementPlugin(): In order to enable HRM when server require webpack again
+    - new webpack.IgnorePlugin(/\.css$/): For ignoring require css files in node
+    - new HtmlWebpackHarddiskPlugin(): To inject the a new physical HTML in the server
+
+  - In order to use CSS with with miniextractCSS plugin, I Will have to extract the css when bundle it with this.
+    ```
+      {
+        test: /\.css$/,
+        use: [
+          'extracted-loader',
+          MiniCssExtraPlugin.loader,
+          'css-loader'
+        ]
+      }
+    ```
+
+
