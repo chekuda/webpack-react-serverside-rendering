@@ -5,6 +5,8 @@ import App from '../../src/App/App'
 
 const map = (req, res) => {
   const appToString = renderToString(<App/>)
+  
+  console.log(appToString)
 
   const templateData = {
     initialHtml: appToString
