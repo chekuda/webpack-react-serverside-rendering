@@ -1,4 +1,4 @@
-# REACT-GOOGLE-MAPS
+# Webpack-React-SSR
 
 ## Install and set up webpack
 
