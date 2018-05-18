@@ -2,6 +2,8 @@ import React from 'react'
 import { hydrate } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
+import 'bootstrap-4-grid/css/grid.css'
+
 import App from './App'
 
 const render = Component => {

@@ -1,3 +1,7 @@
+# Google-map-react-boilerplate
+  - Using https://github.com/google-map-react/google-map-react
+  - Using https://github.com/chekuda/webpack-react-serverside-rendering
+
 # Webpack-React-SSR
 
 ## Install and set up webpack

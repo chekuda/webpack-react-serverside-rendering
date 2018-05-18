@@ -19,6 +19,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
+    "bootstrap-4-grid": "^2.4.0",
     "css-loader": "^0.28.11",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",

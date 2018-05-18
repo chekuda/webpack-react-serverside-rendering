@@ -1,0 +1,41 @@
+.spot-container {
+  color: white;
+  background: #1500ff;
+  border-radius: 5px;
+  border: solid 2px #fff;
+  padding: 10px 5px;
+  display: inline-flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  animation: fadeInFromNone 0.8s ease-out;
+}
+
+.spot-container::before {
+  background-color: #1500ff;
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%) rotate(45deg);
+}
+
+@keyframes fadeInFromNone {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  1% {
+      display: block;
+      opacity: 0;
+  }
+
+  100% {
+      display: block;
+      opacity: 1;
+  }
+}
