@@ -104,7 +104,6 @@ class App extends Component {
               return(
                 <Spot
                   key={index}
-                  defaultAnimation={process.browser && window.google.maps.Animation.DROP}
                   lat={element.lat}
                   lng={element.lng}
                   text={element.text}
