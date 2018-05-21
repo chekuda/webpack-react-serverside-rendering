@@ -5,11 +5,16 @@
   border: solid 2px #fff;
   padding: 10px 5px;
   display: inline-flex;
+  cursor: pointer;
   text-align: center;
   align-items: center;
   justify-content: center;
   transform: translate(-50%, -50%);
   animation: fadeInFromNone 0.8s ease-out;
+}
+
+.spot-container.selected {
+  background: #6154f3;
 }
 
 .spot-container::before {
@@ -21,6 +26,9 @@
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%) rotate(45deg);
+}
+.spot-container.selected::before {
+  background-color:#6154f3;
 }
 
 @keyframes fadeInFromNone {

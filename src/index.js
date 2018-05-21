@@ -6,6 +6,8 @@ import 'bootstrap-4-grid/css/grid.css'
 
 import App from './App'
 
+import './index.css'
+
 const render = Component => {
   hydrate(
     <AppContainer>

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import GoogleMap from 'google-map-react'
 import { fitBounds } from 'google-map-react/utils'
 
-import Spot from '../Spot'
+import Spot from '../components/Spot'
+import Sidebar from '../components/Sidebar'
 import SpotList from '../../server/dummySpots.json'
 
 import './App.css'
@@ -82,41 +83,49 @@ class App extends Component {
     }
   }
 
+  setSpotSelected = (index) => {
+    this.setState({
+      spotSelected: index
+    })
+  }
+
   render() {
     return (
-      <div className="row">
-        <div className="col-8 gm-container" ref={this.mapContainer}>
-        <GoogleMap
-          defaultCenter={this.state.center}
-          defaultZoom={this.state.zoom}
-          onChange={this.setSpotsToRender}
-        >
-        {
-          this.state.spotsToRender.map((element, index) => {
-            return(
-              <Spot
-                key={index}
-                lat={element.lat}
-                lng={element.lng}
-                text={element.text}
-              />
-            )
-          })
-        }
-        </GoogleMap>
-        </div>
-        <div className="col-4 side-panel">
-          <h2 className="title">All Hikes</h2>
-          <hr/>
+      <div className="container">
+        <div className="row">
+          <div className="col-8 gm-container" ref={this.mapContainer}>
+          <GoogleMap
+            defaultCenter={this.state.center}
+            defaultZoom={this.state.zoom}
+            onChange={this.setSpotsToRender}
+          >
           {
             this.state.spotsToRender.map((element, index) => {
-              return (
-                <div key={index} className='list-sidebar'>
-                  {element.text}
-                </div>
+              return(
+                <Spot
+                  key={index}
+                  defaultAnimation={process.browser && window.google.maps.Animation.DROP}
+                  lat={element.lat}
+                  lng={element.lng}
+                  text={element.text}
+                  index={index}
+                  spotSelected={this.state.spotSelected}
+                  onOverSpot={this.setSpotSelected}
+
+                />
               )
             })
           }
+          </GoogleMap>
+          </div>
+          <div className="col-4">
+            <Sidebar
+              title='Hikes'
+              spots={this.state.spotsToRender}
+              onOverSpot={this.setSpotSelected}
+              spotSelected={this.state.spotSelected}
+            />
+          </div>
         </div>
       </div>
     )
