@@ -1,23 +1,38 @@
 .spot-container {
+  position: relative;
+}
+.spot {
+  opacity: 0;
+  position: absolute;
+  top: -15px;
   color: white;
   background: #1500ff;
   border-radius: 5px;
   border: solid 2px #fff;
-  padding: 10px 5px;
+  padding: 5px 5px;
   display: inline-flex;
   cursor: pointer;
   text-align: center;
   align-items: center;
   justify-content: center;
   transform: translate(-50%, -50%);
-  animation: fadeInFromNone 0.8s ease-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.spot-container.selected {
+.spot.entering {
+  opacity: 0;
+}
+
+.spot.entered {
+  opacity: 1;
+}
+
+
+.spot.onover {
   background: #6154f3;
 }
 
-.spot-container::before {
+.spot::before {
   background-color: #1500ff;
   content: "";
   position: absolute;
@@ -27,23 +42,6 @@
   left: 50%;
   transform: translate(-50%, 50%) rotate(45deg);
 }
-.spot-container.selected::before {
+.spot.onover::before {
   background-color:#6154f3;
-}
-
-@keyframes fadeInFromNone {
-  0% {
-      display: none;
-      opacity: 0;
-  }
-
-  1% {
-      display: block;
-      opacity: 0;
-  }
-
-  100% {
-      display: block;
-      opacity: 1;
-  }
 }

@@ -25,6 +25,10 @@ module.exports = {
           MiniCssExtraPlugin.loader,
           'css-loader'
         ]
+      },
+      { // In order to use FontAwesome
+        test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+        use: 'file-loader',
       }
     ]
   },

@@ -4,6 +4,7 @@ import { fitBounds } from 'google-map-react/utils'
 
 import Spot from '../components/Spot'
 import Sidebar from '../components/Sidebar'
+import SpotInfo from '../components/SpotInfo'
 import SpotList from '../../server/dummySpots.json'
 
 import './App.css'
@@ -83,9 +84,15 @@ class App extends Component {
     }
   }
 
-  setSpotSelected = (index) => {
+  handleSpotHovered = (id) => {
     this.setState({
-      spotSelected: index
+      spotHovered: id
+    })
+  }
+
+  handleSpotSeleted = (id) => {
+    this.setState({
+      spotSelected: id
     })
   }
 
@@ -106,11 +113,11 @@ class App extends Component {
                   key={index}
                   lat={element.lat}
                   lng={element.lng}
-                  text={element.text}
-                  index={index}
+                  element={element}
                   spotSelected={this.state.spotSelected}
-                  onOverSpot={this.setSpotSelected}
-
+                  spotHovered={this.state.spotHovered}
+                  onOverSpot={this.handleSpotHovered}
+                  onSpotClicked={this.handleSpotSeleted}
                 />
               )
             })
@@ -120,9 +127,11 @@ class App extends Component {
           <div className="col-4">
             <Sidebar
               title='Hikes'
-              spots={this.state.spotsToRender}
-              onOverSpot={this.setSpotSelected}
               spotSelected={this.state.spotSelected}
+              spots={this.state.spotsToRender}
+              onOverSpot={this.handleSpotHovered}
+              spotHovered={this.state.spotHovered}
+              onSpotClicked={this.handleSpotSeleted}
             />
           </div>
         </div>

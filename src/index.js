@@ -2,7 +2,9 @@ import React from 'react'
 import { hydrate } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
+import reset from 'reset-css'
 import 'bootstrap-4-grid/css/grid.css'
+import 'font-awesome/css/font-awesome.min.css'
 
 import App from './App'
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 import './Sidebar.css'
 
-const Sidebar = ({ spots = [], title, onOverSpot, spotSelected }) =>
+const Sidebar = ({ spots = [], title, onOverSpot, spotHovered, onSpotClicked }) =>
   <div className="side-panel">
     <h2 className="title">{title}</h2>
     <hr/>
@@ -11,9 +11,10 @@ const Sidebar = ({ spots = [], title, onOverSpot, spotSelected }) =>
         return (
           <div
             key={index}
-            className={`list-sidebar ${spotSelected === index ? 'selected' : ''}`}
-            onMouseOver={() => onOverSpot(index)}
+            className={`list-sidebar ${spotHovered === index ? 'onover' : ''}`}
+            onMouseOver={() => onOverSpot(element.id)}
             onMouseLeave={onOverSpot}
+            onClick={() => onSpotClicked(element.id)}
           >
             {element.text}
           </div>
