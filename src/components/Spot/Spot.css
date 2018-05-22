@@ -7,7 +7,7 @@
   top: -15px;
   left: 1px;
   color: white;
-  background: #B69A71;
+  background: #ADB6BB;
   border-radius: 5px;
   border: solid 2px #fff;
   padding: 5px 5px;
@@ -30,11 +30,11 @@
 
 
 .spot.onover {
-  background: #6154f3;
+  background: #45525D;
 }
 
 .spot::before {
-  background-color: #B69A71;
+  background-color: #ADB6BB;
   content: "";
   border-bottom: solid 2px;
   border-right: solid 2px;
@@ -46,7 +46,7 @@
   transform: translate(-50%, 50%) rotate(45deg);
 }
 .spot.onover::before {
-  background-color:#6154f3;
+  background-color:#45525D;
 }
 
 .spot .area {
