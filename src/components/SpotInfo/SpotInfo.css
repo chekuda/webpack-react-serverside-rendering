@@ -31,13 +31,13 @@
   transform: scaleY(1);
   z-index: 3;
 }
-.slide {
+.spotInfo .slide {
   width: 200px;
 }
-.info{
+.spotInfo .info{
   padding: 5px;
 }
-.close {
+.spotInfo .close {
   position: absolute;
   right: 1px;
   font-size: 15px;
@@ -48,42 +48,42 @@
   cursor: pointer;
   z-index: 5;
 }
-.area {
+.spotInfo .area {
   display: block;
   padding: 5px 5px;
 }
-.name {
+.spotInfo .name {
   font-size: 20px;
 }
-.rates {
+.spotInfo .rates {
   display: flex;
 }
-.stars {
+.spotInfo .stars {
   align-self: flex-end;
   width: 100%;
   font-size: 12px;
 }
-.fa-star{
+.spotInfo .fa-star{
   align-self: baseline;
   font-size: 10px;
   padding-left: 3px;
   color: #e6c149;
 }
 
-.dificulty {
+.spotInfo .dificulty {
   align-self: flex-end;
   font-size: 20px;
 }
 
-.fa-signal.easy {
+.spotInfo .fa-signal.easy {
   color: #008000;
 }
-.fa-signal.medium {
+.spotInfo .fa-signal.medium {
   color: #fff008;
 }
-.fa-signal.dificult {
+.spotInfo .fa-signal.dificult {
   color: #ff9508;
 }
-.fa-signal.extreme {
+.spotInfo .fa-signal.extreme {
   color: #ff0000;
 }

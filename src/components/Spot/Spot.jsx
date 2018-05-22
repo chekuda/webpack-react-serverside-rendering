@@ -18,7 +18,7 @@ class Spot extends Component {
       />
       <Transition
         in={true}
-        timeout={100}
+        timeout={200}
         appear={true}
       >
       {
@@ -29,7 +29,12 @@ class Spot extends Component {
           onMouseLeave={onOverSpot}
           onClick={() => onSpotClicked(element.id)}
         >
-          {element.text}
+          <div className="area stars">
+            {element.stars} <i className="fa fa-star" aria-hidden="true"></i>
+          </div>
+          <div className='area dificulty'>
+            <i className={`fa fa-signal ${element.dificulty}`}></i>
+          </div>
         </div>
       }
       </ Transition>

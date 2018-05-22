@@ -25,7 +25,7 @@ class SpotInfo extends Component {
     return (
       <Transition
         in={spotSelected}
-        timeout={100}
+        timeout={200}
         appear={true}
       >
       {
