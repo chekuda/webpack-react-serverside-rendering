@@ -6,7 +6,7 @@ import Transition from 'react-transition-group/Transition'
 import Spot from '../components/Spot'
 import Sidebar from '../components/Sidebar'
 import SpotInfo from '../components/SpotInfo'
-import SpotList from '../../server/dummySpots.json'
+import SpotList from '../../server/dummySpots'
 
 import './App.css'
 
@@ -28,7 +28,7 @@ class App extends Component {
 
     this.continentSelected = this.props.continentSelected || 'europe'
     this.mapContainer = React.createRef()
-    this.allSpots = SpotList[this.continentSelected]
+    this.allSpots = SpotList()[this.continentSelected]
     this.hasBeenRendered = false // To avoid first googleMap rendering bounce
     this.state = {
       spotsToRender: this.allSpots,

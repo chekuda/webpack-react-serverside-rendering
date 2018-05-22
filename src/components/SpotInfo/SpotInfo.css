@@ -69,13 +69,12 @@
 .spotInfo-container.entering {
   transform: scaleY(0)
 }
-.spotInfo-container.entered {
+.spotInfo-container.entered { 
   transform: scaleY(1);
   z-index: 3;
 }
 .spotInfo-container .slider {
   width: 100%;
-  min-width: 200px;
   max-width: 200px;
 }
 .spotInfo-container .info{
@@ -137,11 +136,18 @@
   }
   .spotInfo-container .slider {
     width: 100%;
+    min-width: 200px;
     max-width: 100%;
   }
   .spotInfo-container .area {
     display: block;
-    padding: 5px 10px 5px 0px;
+    padding: 5px 10px 5px 5px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .spotInfo-container .slider {
+    min-width: 100%;
   }
 }
 
@@ -153,6 +159,7 @@
   }
   .spotInfo-container .slider {
     width: 100%;
+    min-width: 200px;
     max-width: 100%;
   }
 }

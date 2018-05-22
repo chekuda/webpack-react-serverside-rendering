@@ -28,8 +28,6 @@ class SpotInfo extends Component {
     const { spot, spotToRender, spotSelected = '', onSpotClicked = this.dummyClick, onClickClose } = this.props
     const { dificulty = '', stars, text, imageList, maxAltitude, routes, id } = spot
 
-
-    console.log(spotSelected)
     return (
       <Transition
         in={spotToRender}
@@ -38,7 +36,10 @@ class SpotInfo extends Component {
       >
       {
         status =>
-        <div className={`spotInfo-container ${status} ${spotSelected}`} onClick={() => onSpotClicked(id)}>
+        <div
+        className={`spotInfo-container ${status} ${spotSelected}`}
+        onClick={() => onSpotClicked(id)}
+        >
           <div className="close" onClick={onClickClose}>
             <i className="fa fa-close"></i>
           </div>

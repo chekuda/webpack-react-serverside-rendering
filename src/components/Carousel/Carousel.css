@@ -19,7 +19,7 @@
 }
 
 .carousel-container .slide.exiting {
-  opacity: 0.5;
+  opacity: 0;
 }
 
 .carousel-container .slide.entered {
