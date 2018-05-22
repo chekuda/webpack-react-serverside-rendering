@@ -1,23 +1,20 @@
 import React from 'react'
 
+import SpotInfo from '../SpotInfo'
+
 import './Sidebar.css'
 
-const Sidebar = ({ spots = [], title, onOverSpot, spotHovered, onSpotClicked }) =>
+const Sidebar = ({ spots = [], title, onOverSpot, spotHovered, onSpotClicked, spotSelected }) =>
   <div className="sidebar-container">
-    <h2 className="title">{title}</h2>
-    <hr/>
     {
-      spots.map((element, index) => {
+      spots.map((spot, index) => {
         return (
-          <div
+          <SpotInfo
             key={index}
-            className={`list-sidebar ${spotHovered === index ? 'onover' : ''}`}
-            onMouseOver={() => onOverSpot(element.id)}
-            onMouseLeave={onOverSpot}
-            onClick={() => onSpotClicked(element.id)}
-          >
-            {element.text}
-          </div>
+            spot={spot}
+            spotSelected={true}
+            onSpotClicked={onSpotClicked}
+          />
         )
       })
     }

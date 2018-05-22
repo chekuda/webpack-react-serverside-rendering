@@ -101,7 +101,7 @@ class App extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-8 gm-container" ref={this.mapContainer}>
+          <div className="col-xs-8 col-8 googlemap-container" ref={this.mapContainer}>
           <GoogleMap
             defaultCenter={this.state.center}
             defaultZoom={this.state.zoom}
@@ -114,7 +114,7 @@ class App extends Component {
                 lat={spot.lat}
                 lng={spot.lng}
                 in={this.state.spotsToRender.includes(spot)}
-                timeout={200}
+                timeout={300}
                 appear={true}
               >
                 {
@@ -134,7 +134,7 @@ class App extends Component {
           }
           </GoogleMap>
           </div>
-          <div className="col-4">
+          <div className="col-xs-4 col-4">
             <Sidebar
               title='Hikes'
               spotSelected={this.state.spotSelected}
