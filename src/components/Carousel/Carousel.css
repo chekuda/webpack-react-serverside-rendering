@@ -27,7 +27,7 @@
 }
 
 .carousel-container .slide.entering {
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .carousel-container .controls {
