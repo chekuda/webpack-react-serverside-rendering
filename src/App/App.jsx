@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import GoogleMap from 'google-map-react'
 import { fitBounds } from 'google-map-react/utils'
+import Transition from 'react-transition-group/Transition'
 
 import Spot from '../components/Spot'
 import Sidebar from '../components/Sidebar'
@@ -107,20 +108,29 @@ class App extends Component {
             onChange={this.setSpotsToRender}
           >
           {
-            this.state.spotsToRender.map((element, index) => {
-              return(
-                <Spot
-                  key={index}
-                  lat={element.lat}
-                  lng={element.lng}
-                  element={element}
-                  spotSelected={this.state.spotSelected}
-                  spotHovered={this.state.spotHovered}
-                  onOverSpot={this.handleSpotHovered}
-                  onSpotClicked={this.handleSpotSeleted}
-                />
-              )
-            })
+            this.allSpots.map((spot, index) => (
+              <Transition
+                key={index}
+                lat={spot.lat}
+                lng={spot.lng}
+                in={this.state.spotsToRender.includes(spot)}
+                timeout={200}
+                appear={true}
+              >
+                {
+                  status =>(
+                    <Spot
+                      status={status}
+                      spot={spot}
+                      spotSelected={this.state.spotSelected}
+                      spotHovered={this.state.spotHovered}
+                      onOverSpot={this.handleSpotHovered}
+                      onSpotClicked={this.handleSpotSeleted}
+                    />
+                  )
+                }
+              </ Transition>
+            ))
           }
           </GoogleMap>
           </div>

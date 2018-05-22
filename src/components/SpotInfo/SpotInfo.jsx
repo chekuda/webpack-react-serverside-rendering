@@ -19,8 +19,8 @@ class SpotInfo extends Component {
   }
 
   render() {
-    const { element, spotSelected, onSpotClicked } = this.props
-    const { dificulty = '', stars, text, imageList, maxAltitude, routes } = element
+    const { spot, spotSelected, onSpotClicked } = this.props
+    const { dificulty = '', stars, text, imageList, maxAltitude, routes } = spot
 
     return (
       <Transition
