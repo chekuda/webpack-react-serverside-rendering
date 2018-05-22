@@ -19,8 +19,8 @@ class Spot extends Component {
       <div className="spot-container">
         <SpotInfo
           spot={spot}
-          spotSelected={spotSelected === spot.id }
-          onSpotClicked={onSpotClicked}
+          spotToRender={spotSelected === spot.id }
+          onClickClose={onSpotClicked}
         />
         <div
           className={`spot ${status} ${spotHovered === spot.id ? 'onover' : ''}`}

@@ -4,7 +4,13 @@ import SpotInfo from '../SpotInfo'
 
 import './Sidebar.css'
 
-const Sidebar = ({ spots = [], title, onOverSpot, spotHovered, onSpotClicked, spotSelected }) =>
+const Sidebar = ({
+  spots = [],
+  onOverSpot,
+  spotHovered,
+  onSpotClicked,
+  spotSelected,
+}) =>
   <div className="sidebar-container">
     {
       spots.map((spot, index) => {
@@ -12,8 +18,10 @@ const Sidebar = ({ spots = [], title, onOverSpot, spotHovered, onSpotClicked, sp
           <SpotInfo
             key={index}
             spot={spot}
-            spotSelected={true}
+            spotToRender={true}
+            spotSelected={spot.id === spotSelected ? 'selected' : ''}
             onSpotClicked={onSpotClicked}
+            onClickClose={onSpotClicked}
           />
         )
       })

@@ -20,20 +20,26 @@ class SpotInfo extends Component {
     )
   }
 
-  render() {
-    const { spot, spotSelected, onSpotClicked } = this.props
-    const { dificulty = '', stars, text, imageList, maxAltitude, routes } = spot
+  dummyClick = () => {
+    return
+  }
 
+  render() {
+    const { spot, spotToRender, spotSelected = '', onSpotClicked = this.dummyClick, onClickClose } = this.props
+    const { dificulty = '', stars, text, imageList, maxAltitude, routes, id } = spot
+
+
+    console.log(spotSelected)
     return (
       <Transition
-        in={spotSelected}
+        in={spotToRender}
         timeout={200}
         appear={true}
       >
       {
         status =>
-        <div className={`spotInfo-container ${status}`}>
-          <div className="close" onClick={onSpotClicked}>
+        <div className={`spotInfo-container ${status} ${spotSelected}`} onClick={() => onSpotClicked(id)}>
+          <div className="close" onClick={onClickClose}>
             <i className="fa fa-close"></i>
           </div>
           <div className="slider">
