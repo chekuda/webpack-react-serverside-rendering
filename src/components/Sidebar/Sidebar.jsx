@@ -3,7 +3,7 @@ import React from 'react'
 import './Sidebar.css'
 
 const Sidebar = ({ spots = [], title, onOverSpot, spotHovered, onSpotClicked }) =>
-  <div className="side-panel">
+  <div className="sidebar-container">
     <h2 className="title">{title}</h2>
     <hr/>
     {

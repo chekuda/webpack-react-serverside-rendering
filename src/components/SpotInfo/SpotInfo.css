@@ -1,18 +1,18 @@
-.spotInfo {
+.spotInfo-container {
   height: auto;
   position: absolute;
-  top: -280px;
+  top: -328px;
   left: -100px;
   width: 200px;
   background: #fff;
   color: #8e8d8d;
   max-width: 200px;
   box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);
-  transition: transform 0.1s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   transform: scaleY(0)
 }
 
-.spotInfo::before {
+.spotInfo-container::before {
   background-color: #fff;
   content: "";
   position: absolute;
@@ -24,66 +24,65 @@
   transform: translate(-50%, 50%) rotate(45deg);
 }
 
-.spotInfo.entering {
+.spotInfo-container.entering {
   transform: scaleY(0)
 }
-.spotInfo.entered {
+.spotInfo-container.entered {
   transform: scaleY(1);
   z-index: 3;
 }
-.spotInfo .slide {
+.spotInfo-container .slider {
   width: 200px;
 }
-.spotInfo .info{
+.spotInfo-container .info{
   padding: 5px;
 }
-.spotInfo .close {
+.spotInfo-container .close {
   position: absolute;
   right: 1px;
-  font-size: 15px;
-  background: #fff;
+  font-size: 20px;
   width: 20px;
   text-align: center;
-  border-radius: 50%;
+  color: #fff;
   cursor: pointer;
-  z-index: 5;
+  z-index: 4;
 }
-.spotInfo .area {
+.spotInfo-container .area {
   display: block;
   padding: 5px 5px;
 }
-.spotInfo .name {
+.spotInfo-container .name {
   font-size: 20px;
 }
-.spotInfo .rates {
+.spotInfo-container .rates {
   display: flex;
 }
-.spotInfo .stars {
+.spotInfo-container .stars {
   align-self: flex-end;
   width: 100%;
   font-size: 12px;
 }
-.spotInfo .fa-star{
+.spotInfo-container .fa-star{
   align-self: baseline;
   font-size: 10px;
   padding-left: 3px;
   color: #e6c149;
 }
 
-.spotInfo .dificulty {
+.spotInfo-container .dificulty {
   align-self: flex-end;
   font-size: 20px;
 }
 
-.spotInfo .fa-signal.easy {
+.spotInfo-container .fa-signal.easy {
   color: #008000;
 }
-.spotInfo .fa-signal.medium {
+.spotInfo-container .fa-signal.medium {
   color: #fff008;
 }
-.spotInfo .fa-signal.dificult {
+.spotInfo-container .fa-signal.dificult {
   color: #ff9508;
 }
-.spotInfo .fa-signal.extreme {
+.spotInfo-container .fa-signal.extreme {
   color: #ff0000;
 }

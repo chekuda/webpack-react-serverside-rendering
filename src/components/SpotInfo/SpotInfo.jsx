@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import Transition from 'react-transition-group/Transition'
 
+import Carousel from '../Carousel'
+
 import './SpotInfo.css'
 
 class SpotInfo extends Component {
@@ -30,12 +32,12 @@ class SpotInfo extends Component {
       >
       {
         status =>
-        <div className={`spotInfo ${status}`}>
+        <div className={`spotInfo-container ${status}`}>
           <div className="close" onClick={onSpotClicked}>
             <i className="fa fa-close"></i>
           </div>
           <div className="slider">
-            <img className="slide" src={imageList[0]} />
+            <Carousel spot={spot}/>
           </div>
           <div className="info">
             <div className="area name">{text}</div>
