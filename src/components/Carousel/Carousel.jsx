@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Transition from 'react-transition-group/Transition'
 
 import './Carousel.css'
 
@@ -50,10 +51,18 @@ class Carousel extends Component {
         onMouseLeave={this.removeShadow}
       >
         {
-          this.slides.map((ele, index) =>
-            this.state.slideSelected === index
-            ? <div key={index} className="slide" style={{ backgroundImage: `url(${ele}`}}></div>
-            : null
+          this.slides.map((ele, index) => (
+            <Transition
+              key={index}
+              in={this.state.slideSelected === index}
+              timeout={500}
+            >
+              {
+                status =>
+                  <div key={index} className={`slide ${status}`} style={{ backgroundImage: `url(${ele}`}}></div>
+              }
+            </Transition>
+            )
           )
         }
         {
