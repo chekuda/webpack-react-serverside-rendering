@@ -1,15 +1,29 @@
 .spotInfo {
   height: auto;
   position: absolute;
-  top: -195px;
-  left: -70px;
-  width: 150px;
+  top: -280px;
+  left: -100px;
+  width: 200px;
   background: #fff;
-  max-width: 150px;
+  color: #8e8d8d;
+  max-width: 200px;
   box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);
   transition: transform 0.1s ease-in-out;
   transform: scaleY(0)
 }
+
+.spotInfo::before {
+  background-color: #fff;
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  bottom: 0;
+  left: 50%;
+  box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+  transform: translate(-50%, 50%) rotate(45deg);
+}
+
 .spotInfo.entering {
   transform: scaleY(0)
 }
@@ -18,63 +32,58 @@
   z-index: 3;
 }
 .slide {
-  width: 150px;
+  width: 200px;
 }
 .info{
   padding: 5px;
-  display: flex;
-  justify-content: space-between;
 }
 .close {
   position: absolute;
+  right: 1px;
   font-size: 15px;
-  right: 5px;
-  color: white;
+  background: #fff;
+  width: 20px;
+  text-align: center;
+  border-radius: 50%;
   cursor: pointer;
-  -webkit-text-stroke: 1px #000;
   z-index: 5;
 }
+.area {
+  display: block;
+  padding: 5px 5px;
+}
 .name {
-  align-self: flex-end;
-  font-size: 15px;
-  max-width: 70px;
+  font-size: 20px;
+}
+.rates {
+  display: flex;
 }
 .stars {
-  color: #fff008;
   align-self: flex-end;
-  font-size: 20px;
-  -webkit-text-stroke: 1px #ccc;
+  width: 100%;
+  font-size: 12px;
 }
-.rate {
-  display: flex;
+.fa-star{
+  align-self: baseline;
+  font-size: 10px;
+  padding-left: 3px;
+  color: #e6c149;
 }
 
 .dificulty {
-  font-size: 31px;
-  overflow: hidden;
   align-self: flex-end;
-  padding-left: 1px;
-  -webkit-text-stroke: 1px #ccc;
-}
-.dificulty.easy {
-  color: #008000;
-}
-.dificulty.medium {
-  color: #fff008;
-}
-.dificulty.dificult {
-  color: #ff9508;
-}
-.dificulty.extreme {
-  color: #ff0000;
+  font-size: 20px;
 }
 
 .fa-signal.easy {
-  width: 12px;
+  color: #008000;
 }
 .fa-signal.medium {
-  width: 18px;
+  color: #fff008;
 }
 .fa-signal.dificult {
-  width: 25px;
+  color: #ff9508;
+}
+.fa-signal.extreme {
+  color: #ff0000;
 }

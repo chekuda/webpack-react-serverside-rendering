@@ -7,7 +7,9 @@
       "text": "Dolomites",
       "imageList": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBemQWYCiXxeMctquLix0Ntn_zVQAS3RmQ4rRiWbhoRvQdp9P2"],
       "dificulty": "easy",
-      "stars": "excelent",
+      "maxAltitude": "2000m",
+      "stars": 2,
+      "routes": 4,
       "title": "Whatever whatever whatever"
     },
     {
@@ -17,7 +19,9 @@
       "text": "Whatever",
       "imageList": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBemQWYCiXxeMctquLix0Ntn_zVQAS3RmQ4rRiWbhoRvQdp9P2"],
       "dificulty": "easy",
-      "stars": "good",
+      "stars": 3,
+      "maxAltitude": "2000m",
+      "routes": 4,
       "title": "Whatever whatever whatever"
     },
     {
@@ -27,7 +31,9 @@
       "text": "Triglav",
       "imageList": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBemQWYCiXxeMctquLix0Ntn_zVQAS3RmQ4rRiWbhoRvQdp9P2"],
       "dificulty": "medium",
-      "stars": "great",
+      "stars": 1,
+      "maxAltitude": "2000m",
+      "routes": 4,
       "title": "Whatever whatever whatever"
     },
     {
@@ -37,7 +43,9 @@
       "text": "Madrid",
       "imageList": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBemQWYCiXxeMctquLix0Ntn_zVQAS3RmQ4rRiWbhoRvQdp9P2"],
       "dificulty": "dificult",
-      "stars": "excelent",
+      "stars": 2,
+      "maxAltitude": "2000m",
+      "routes": 4,
       "title": "Whatever whatever whatever"
     },
     {
@@ -47,7 +55,9 @@
       "text": "Berlin",
       "imageList": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBemQWYCiXxeMctquLix0Ntn_zVQAS3RmQ4rRiWbhoRvQdp9P2"],
       "dificulty": "extreme",
-      "stars": "excelent",
+      "stars": 5,
+      "maxAltitude": "2000m",
+      "routes": 4,
       "title": "Whatever whatever whatever"
     },
     {
@@ -57,7 +67,9 @@
       "text": "London",
       "imageList": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBemQWYCiXxeMctquLix0Ntn_zVQAS3RmQ4rRiWbhoRvQdp9P2"],
       "dificulty": "medium",
-      "stars": "excelent",
+      "stars": 4,
+      "maxAltitude": "2000m",
+      "routes": 4,
       "title": "Whatever whatever whatever"
     }
   ]

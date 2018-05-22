@@ -27,7 +27,7 @@ module.exports = {
         ]
       },
       { // In order to use FontAwesome
-        test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+        test: /\.(ttf|eot|svg|woff|woff2)(\?[\s\S]+)?$/,
         use: 'file-loader',
       }
     ]
