@@ -115,9 +115,9 @@ class App extends Component {
 
     if(this.state.spotSelected !== this.state.cachedSpotSelected){
       const newRight = mapRightDistance - right
-      const offsetHeight = top < 0 ? top - 20 : 0
-      const offSetRight = newRight < 0 ? newRight - 20 : 0
-      const offSetLeft = left < 0 ? (left * -1) + mapLeftDistance + 20 : 0
+      const offsetHeight = top <= 20 ? top - 20 : 0
+      const offSetRight = newRight <= 20 ? newRight - 20 : 0
+      const offSetLeft = left <= 20 ? (left * -1) + mapLeftDistance + 20 : 0
 
       if(offsetHeight || offSetLeft || offSetRight) {
         const offSetWidth = offSetRight < 0 ? offSetRight : offSetLeft
