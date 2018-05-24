@@ -10,6 +10,15 @@ class SpotCard extends Component {
     super(props)
 
     this.myCard = React.createRef()
+    this.transitionHasEnded = this.transitionHasEnded.bind(this)
+  }
+
+  componentDidMount(){
+    this.myCard.current.addEventListener('transitionend', this.transitionHasEnded, false)
+  }
+
+  componentWillUnmount() {
+    this.myCard.current.removeEventListener('transitionend', this.transitionHasEnded, false)
   }
 
   drawStars(stars = 0) {
@@ -37,15 +46,26 @@ class SpotCard extends Component {
     onSpotClicked(id)
   }
 
+  transitionHasEnded = ({ target }) => {
+    const { fitSpotCardOnMap, spotSelected, spot, from } = this.props
+
+    if(spotSelected === 'selected' && from === 'spot-container') {
+      console.log(target.getBoundingClientRect())
+      fitSpotCardOnMap(target.getBoundingClientRect())
+    }
+  }
+
   render() {
     const {
       spot,
       spotToRender,
       spotSelected = '',
       onClickClose,
+      from,
       scrollMap,
       onOverSpot = this.dummyClick,
       isHovered,
+      fitSpotCardOnMap
     } = this.props
 
     const { dificulty = '', stars, text, imageList, maxAltitude, routes, id } = spot
@@ -59,10 +79,10 @@ class SpotCard extends Component {
       {
         status =>
         <div
-        ref={this.myCard}
-        className={`spotCard-container ${status} ${spotSelected} ${isHovered}`}
-        onClick={(ev) => this.onClosePreventBubble(ev, id)}
-        onMouseOver={() => onOverSpot(id)}
+          ref={this.myCard}
+          className={`spotCard-container ${status} ${spotSelected} ${isHovered}`}
+          onClick={(ev) => this.onClosePreventBubble(ev, id)}
+          onMouseOver={() => onOverSpot(id)}
         >
           <div className="close" onClick={onClickClose}>
             <i className="fa fa-close"></i>

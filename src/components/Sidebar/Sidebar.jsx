@@ -9,7 +9,8 @@ const Sidebar = ({
   onOverSpot,
   spotHovered,
   onSpotClicked,
-  spotSelected
+  spotSelected,
+  fitSpotCardOnMap
 }) =>
   <div className="sidebar-container">
     {
@@ -17,6 +18,7 @@ const Sidebar = ({
         return (
           <SpotCard
             key={index}
+            from='sidebar-container'
             spot={spot}
             spotToRender={true}
             spotSelected={spot.id === spotSelected ? 'selected' : ''}
@@ -24,6 +26,7 @@ const Sidebar = ({
             onSpotClicked={onSpotClicked}
             onClickClose={onSpotClicked}
             onOverSpot={onOverSpot}
+            fitSpotCardOnMap={fitSpotCardOnMap}
           />
         )
       })

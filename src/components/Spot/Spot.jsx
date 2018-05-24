@@ -10,13 +10,8 @@ class Spot extends Component {
     super(props)
 
     this.mySpotCard = React.createRef()
-  }
-
-  getSpotInfoDimensions(spotInfo) {
-    const currentSpotInfo = spotInfo.current.myCard.current
-    return {
-      bouding: currentSpotInfo.getBoundingClientRect(),
-      clientHeight: currentSpotInfo.clientHeight
+    this.state = {
+      cachedSpotSelected: null
     }
   }
 
@@ -27,20 +22,24 @@ class Spot extends Component {
       onOverSpot,
       spotSelected,
       onSpotClicked,
-      status
+      status,
+      fitSpotCardOnMap
     } = this.props
 
     return (
       <div className="spot-container"
-        onClick={() => onSpotClicked(spot.id, spot.lat, spot.lng, this.getSpotInfoDimensions(this.mySpotCard))}
+        onClick={() => onSpotClicked(spot.id)}
       >
         <SpotCard
           ref={this.mySpotCard}
           spot={spot}
           spotToRender={spotSelected === spot.id }
+          spotSelected={spot.id === spotSelected ? 'selected' : ''}
           onClickClose={onSpotClicked}
           isHovered={false}
           scrollMap={true}
+          from='spot-container'
+          fitSpotCardOnMap={fitSpotCardOnMap}
         />
         <SpotLabel
           spot={spot}

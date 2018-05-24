@@ -6,6 +6,7 @@ import Transition from 'react-transition-group/Transition'
 import Spot from '../components/Spot'
 import Sidebar from '../components/Sidebar'
 import SpotList from '../../server/dummySpots'
+import getOffset from '../helpers'
 
 import './App.css'
 
@@ -33,9 +34,11 @@ class App extends Component {
     this.state = {
       spotsToRender: this.allSpots,
       center: this.defaultMapProps.center,
-      zoom: this.defaultMapProps.zoom
+      zoom: this.defaultMapProps.zoom,
+      cachedSpotSelected: null
     }
     this.myMap = React.createRef()
+    this.mySpot = React.createRef()
   }
 
   setDefaultProps() {
@@ -105,22 +108,39 @@ class App extends Component {
     })
   }
 
+  fitSpotCardOnMap = ({ top, right, left }) => {
+    let nCenter = null
+    const mapRightDistance = this.myMap.current.boundingRect_.right
+    const mapLeftDistance = this.myMap.current.boundingRect_.left
 
-  handleSpotSeleted = (id, lat, lng, { bouding, clientHeight } = {}) => { //REFACTOR
-    let isOutOfView = null
+    if(this.state.spotSelected !== this.state.cachedSpotSelected){
+      const newRight = mapRightDistance - right
+      const offsetHeight = top < 0 ? top - 20 : 0
+      const offSetRight = newRight < 0 ? newRight - 20 : 0
+      const offSetLeft = left < 0 ? (left * -1) + mapLeftDistance + 20 : 0
 
-    if(bouding && clientHeight ) {
-      isOutOfView = bouding.top < 0
-      || bouding.top - clientHeight < 0
-      || bouding.left < 0
-      || bouding.right > this.mapContainer.current.offsetWidth
+      if(offsetHeight || offSetLeft || offSetRight) {
+        const offSetWidth = offSetRight < 0 ? offSetRight : offSetLeft
+        nCenter = getOffset(this.myMap.current.map_, offSetWidth, offsetHeight)
+      }
+
+      this.setState({
+        cachedSpotSelected: this.state.spotSelected,
+        center: nCenter
+          ? {
+            lat: nCenter.lat(),
+            lng: nCenter.lng()
+          }
+          : this.state.center
+      })
     }
 
+  }
+
+
+  handleSpotSeleted = (id) => {
      this.setState({
-      spotSelected: id,
-      center: isOutOfView
-        ? { lat, lng }
-        : this.state.center
+      spotSelected: id
      })
   }
 
@@ -151,6 +171,7 @@ class App extends Component {
                     <Spot
                       status={status}
                       spot={spot}
+                      fitSpotCardOnMap={this.fitSpotCardOnMap}
                       spotSelected={this.state.spotSelected}
                       spotHovered={this.state.spotHovered}
                       onOverSpot={this.handleSpotHovered}
@@ -171,6 +192,7 @@ class App extends Component {
               onOverSpot={this.handleSpotHovered}
               spotHovered={this.state.spotHovered}
               onSpotClicked={this.handleSpotSeleted}
+              fitSpotCardOnMap={this.fitSpotCardOnMap}
             />
           </div>
         </div>
