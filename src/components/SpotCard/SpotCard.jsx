@@ -50,7 +50,6 @@ class SpotCard extends Component {
     const { fitSpotCardOnMap, spotSelected, spot, from } = this.props
 
     if(spotSelected === 'selected' && from === 'spot-container') {
-      console.log(target.getBoundingClientRect())
       fitSpotCardOnMap(target.getBoundingClientRect())
     }
   }

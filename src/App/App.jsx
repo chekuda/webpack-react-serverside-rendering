@@ -137,7 +137,6 @@ class App extends Component {
 
   }
 
-
   handleSpotSeleted = (id) => {
      this.setState({
       spotSelected: id
