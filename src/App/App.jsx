@@ -5,7 +5,6 @@ import Transition from 'react-transition-group/Transition'
 
 import Spot from '../components/Spot'
 import Sidebar from '../components/Sidebar'
-import SpotInfo from '../components/SpotInfo'
 import SpotList from '../../server/dummySpots'
 
 import './App.css'
@@ -37,7 +36,6 @@ class App extends Component {
       zoom: this.defaultMapProps.zoom
     }
     this.myMap = React.createRef()
-    this.mySpot = React.createRef()
   }
 
   setDefaultProps() {

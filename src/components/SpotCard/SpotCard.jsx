@@ -3,13 +3,13 @@ import Transition from 'react-transition-group/Transition'
 
 import Carousel from '../Carousel'
 
-import './SpotInfo.css'
+import './SpotCard.css'
 
-class SpotInfo extends Component {
+class SpotCard extends Component {
   constructor(props){
     super(props)
 
-    this.myInfo = React.createRef()
+    this.myCard = React.createRef()
   }
 
   drawStars(stars = 0) {
@@ -59,8 +59,8 @@ class SpotInfo extends Component {
       {
         status =>
         <div
-        ref={this.myInfo}
-        className={`spotInfo-container ${status} ${spotSelected} ${isHovered}`}
+        ref={this.myCard}
+        className={`spotCard-container ${status} ${spotSelected} ${isHovered}`}
         onClick={(ev) => this.onClosePreventBubble(ev, id)}
         onMouseOver={() => onOverSpot(id)}
         >
@@ -88,4 +88,4 @@ class SpotInfo extends Component {
   }
 }
 
-export default SpotInfo
+export default SpotCard

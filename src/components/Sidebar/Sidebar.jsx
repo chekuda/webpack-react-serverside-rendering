@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SpotInfo from '../SpotInfo'
+import SpotCard from '../SpotCard'
 
 import './Sidebar.css'
 
@@ -15,7 +15,7 @@ const Sidebar = ({
     {
       spots.map((spot, index) => {
         return (
-          <SpotInfo
+          <SpotCard
             key={index}
             spot={spot}
             spotToRender={true}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
-import SpotInfo from '../SpotInfo'
+import SpotCard from '../SpotCard'
+import SpotLabel from '../SpotLabel'
 
 import './Spot.css'
 
@@ -8,11 +9,11 @@ class Spot extends Component {
   constructor(props) {
     super(props)
 
-    this.mySpotInfo = React.createRef()
+    this.mySpotCard = React.createRef()
   }
 
   getSpotInfoDimensions(spotInfo) {
-    const currentSpotInfo = spotInfo.current.myInfo.current
+    const currentSpotInfo = spotInfo.current.myCard.current
     return {
       bouding: currentSpotInfo.getBoundingClientRect(),
       clientHeight: currentSpotInfo.clientHeight
@@ -31,28 +32,22 @@ class Spot extends Component {
 
     return (
       <div className="spot-container"
-        onClick={() => onSpotClicked(spot.id, spot.lat, spot.lng, this.getSpotInfoDimensions(this.mySpotInfo))}
+        onClick={() => onSpotClicked(spot.id, spot.lat, spot.lng, this.getSpotInfoDimensions(this.mySpotCard))}
       >
-        <SpotInfo
-          ref={this.mySpotInfo}
+        <SpotCard
+          ref={this.mySpotCard}
           spot={spot}
           spotToRender={spotSelected === spot.id }
           onClickClose={onSpotClicked}
           isHovered={false}
           scrollMap={true}
         />
-        <div
-          className={`spot ${status} ${spotHovered === spot.id ? 'onover' : ''}`}
-          onMouseOver={() => onOverSpot(spot.id)}
-          onMouseLeave={onOverSpot}
-        >
-          <div className="area stars">
-            {spot.stars} <i className="fa fa-star" aria-hidden="true"></i>
-          </div>
-          <div className="area dificulty">
-            <i className={`fa fa-signal ${spot.dificulty}`}></i>
-          </div>
-        </div>
+        <SpotLabel
+          spot={spot}
+          spotHovered={spotHovered}
+          onOverSpot={onOverSpot}
+          status={status}
+        />
       </div>
     )
   }
