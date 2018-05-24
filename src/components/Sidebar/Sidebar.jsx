@@ -9,7 +9,7 @@ const Sidebar = ({
   onOverSpot,
   spotHovered,
   onSpotClicked,
-  spotSelected,
+  spotSelected
 }) =>
   <div className="sidebar-container">
     {
@@ -20,8 +20,10 @@ const Sidebar = ({
             spot={spot}
             spotToRender={true}
             spotSelected={spot.id === spotSelected ? 'selected' : ''}
+            spotHovered={spotHovered}
             onSpotClicked={onSpotClicked}
             onClickClose={onSpotClicked}
+            onOverSpot={onOverSpot}
           />
         )
       })

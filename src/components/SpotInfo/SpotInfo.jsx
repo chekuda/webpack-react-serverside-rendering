@@ -6,6 +6,12 @@ import Carousel from '../Carousel'
 import './SpotInfo.css'
 
 class SpotInfo extends Component {
+  constructor(props){
+    super(props)
+
+    this.myInfo = React.createRef()
+  }
+
   drawStars(stars = 0) {
     const arrayStars = Array(stars).fill(1)
     return (
@@ -24,8 +30,23 @@ class SpotInfo extends Component {
     return
   }
 
+  onClosePreventBubble = (ev, id) => {
+    const { onSpotClicked = this.dummyClick } = this.props
+
+    ev.stopPropagation()
+    onSpotClicked(id)
+  }
+
   render() {
-    const { spot, spotToRender, spotSelected = '', onSpotClicked = this.dummyClick, onClickClose } = this.props
+    const {
+      spot,
+      spotToRender,
+      spotSelected = '',
+      onClickClose,
+      scrollMap,
+      onOverSpot = this.dummyClick
+    } = this.props
+
     const { dificulty = '', stars, text, imageList, maxAltitude, routes, id } = spot
 
     return (
@@ -37,8 +58,10 @@ class SpotInfo extends Component {
       {
         status =>
         <div
+        ref={this.myInfo}
         className={`spotInfo-container ${status} ${spotSelected}`}
-        onClick={() => onSpotClicked(id)}
+        onClick={(ev) => this.onClosePreventBubble(ev, id)}
+        onMouseOver={() => onOverSpot(id)}
         >
           <div className="close" onClick={onClickClose}>
             <i className="fa fa-close"></i>

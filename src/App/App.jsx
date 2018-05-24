@@ -29,17 +29,33 @@ class App extends Component {
     this.continentSelected = this.props.continentSelected || 'europe'
     this.mapContainer = React.createRef()
     this.allSpots = SpotList()[this.continentSelected]
+    this.defaultMapProps = this.setDefaultProps()
     this.hasBeenRendered = false // To avoid first googleMap rendering bounce
     this.state = {
       spotsToRender: this.allSpots,
-      center: DefaultProps.center,
-      zoom: DefaultProps.zoom
+      center: this.defaultMapProps.center,
+      zoom: this.defaultMapProps.zoom
     }
+    this.myMap = React.createRef()
+    this.mySpot = React.createRef()
   }
 
-  setFirstViewMap() {
-    const lat = this.state.spotsToRender.map(ele => ele.lat)
-    const lng = this.state.spotsToRender.map(ele => ele.lng)
+  setDefaultProps() {
+    if(this.allSpots.length) {
+      return {
+        center: {
+          lat: this.allSpots[0].lat,
+          lng: this.allSpots[0].lng
+        },
+        zoom: 6
+      }
+    }
+    return DefaultProps
+  }
+
+  setFirstViewMap(spots, size) {
+    const lat = spots.map(ele => ele.lat)
+    const lng = spots.map(ele => ele.lng)
 
     const bounds = {
       nw: {
@@ -51,20 +67,20 @@ class App extends Component {
         lng: getMax(lng)
       }
     }
+
+    return fitBounds(bounds, size)
+  }
+
+  componentDidMount(){
     const size = {
       width: this.mapContainer.current.offsetWidth,
       height: this.mapContainer.current.offsetHeight
     }
-
-    const { center, zoom } = fitBounds(bounds, size)
+    const { zoom, center } = this.setFirstViewMap(this.state.spotsToRender, size)
     this.setState({
       center,
-      zoom: zoom - 1 // Fittin the makers
+      zoom: zoom
     })
-  }
-
-  componentDidMount(){
-    this.setFirstViewMap()
   }
 
   setSpotsToRender = ({ zoom, center, bounds }) => {
@@ -91,10 +107,23 @@ class App extends Component {
     })
   }
 
-  handleSpotSeleted = (id) => {
-    this.setState({
-      spotSelected: id
-    })
+
+  handleSpotSeleted = (id, lat, lng, { bouding, clientHeight } = {}) => { //REFACTOR
+    let isOutOfView = null
+
+    if(bouding && clientHeight ) {
+      isOutOfView = bouding.top < 0
+      || bouding.top - clientHeight < 0
+      || bouding.left < 0
+      || bouding.right > this.mapContainer.current.offsetWidth
+    }
+
+     this.setState({
+      spotSelected: id,
+      center: isOutOfView
+        ? { lat, lng }
+        : this.state.center
+     })
   }
 
   render() {
@@ -105,10 +134,12 @@ class App extends Component {
           <GoogleMap
             defaultCenter={this.state.center}
             defaultZoom={this.state.zoom}
+            center={this.state.center}
             onChange={this.setSpotsToRender}
+            onChildMouseUp={this.isWithinBounds}
+            ref={this.myMap}
           >
-          {
-            this.allSpots.map((spot, index) => (
+          { this.allSpots.map((spot, index) => (
               <Transition
                 key={index}
                 lat={spot.lat}

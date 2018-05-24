@@ -5,6 +5,20 @@ import SpotInfo from '../SpotInfo'
 import './Spot.css'
 
 class Spot extends Component {
+  constructor(props) {
+    super(props)
+
+    this.mySpotInfo = React.createRef()
+  }
+
+  getSpotInfoDimensions(spotInfo) {
+    const currentSpotInfo = spotInfo.current.myInfo.current
+    return {
+      bouding: currentSpotInfo.getBoundingClientRect(),
+      clientHeight: currentSpotInfo.clientHeight
+    }
+  }
+
   render() {
     const {
       spot,
@@ -16,17 +30,20 @@ class Spot extends Component {
     } = this.props
 
     return (
-      <div className="spot-container">
+      <div className="spot-container"
+        onClick={() => onSpotClicked(spot.id, spot.lat, spot.lng, this.getSpotInfoDimensions(this.mySpotInfo))}
+      >
         <SpotInfo
+          ref={this.mySpotInfo}
           spot={spot}
           spotToRender={spotSelected === spot.id }
           onClickClose={onSpotClicked}
+          scrollMap={true}
         />
         <div
           className={`spot ${status} ${spotHovered === spot.id ? 'onover' : ''}`}
           onMouseOver={() => onOverSpot(spot.id)}
           onMouseLeave={onOverSpot}
-          onClick={() => onSpotClicked(spot.id)}
         >
           <div className="area stars">
             {spot.stars} <i className="fa fa-star" aria-hidden="true"></i>
