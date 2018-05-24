@@ -130,7 +130,7 @@ class App extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-xs-8 col-8 googlemap-container" ref={this.mapContainer}>
+          <div className="col-xs-0 col-sm-8 googlemap-container" ref={this.mapContainer}>
           <GoogleMap
             defaultCenter={this.state.center}
             defaultZoom={this.state.zoom}
@@ -165,7 +165,7 @@ class App extends Component {
           }
           </GoogleMap>
           </div>
-          <div className="col-xs-4 col-4">
+          <div className="col-xs-12 col-sm-4">
             <Sidebar
               title='Hikes'
               spotSelected={this.state.spotSelected}
