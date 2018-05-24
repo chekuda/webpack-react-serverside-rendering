@@ -50,8 +50,13 @@
   right: 0;
 }
 .sidebar-container .spotInfo-container.selected {
+  background: rgba(102, 136, 63, 0.25);
+  box-shadow: inset 0px 0px 1px 1px rgba(102, 136, 63, 1);
   border-radius: 5px;
-  background: rgba(102, 136, 63, 0.25)
+}
+.sidebar-container .spotInfo-container.onOver {
+  box-shadow: inset 0px 0px 1px 1px rgba(102, 136, 63, 1);
+  border-radius: 5px;
 }
 
 /* .sidebar-container */
@@ -69,7 +74,7 @@
 .spotInfo-container.entering {
   transform: scaleY(0)
 }
-.spotInfo-container.entered { 
+.spotInfo-container.entered {
   transform: scaleY(1);
   z-index: 3;
 }

@@ -44,7 +44,8 @@ class SpotInfo extends Component {
       spotSelected = '',
       onClickClose,
       scrollMap,
-      onOverSpot = this.dummyClick
+      onOverSpot = this.dummyClick,
+      isHovered,
     } = this.props
 
     const { dificulty = '', stars, text, imageList, maxAltitude, routes, id } = spot
@@ -59,7 +60,7 @@ class SpotInfo extends Component {
         status =>
         <div
         ref={this.myInfo}
-        className={`spotInfo-container ${status} ${spotSelected}`}
+        className={`spotInfo-container ${status} ${spotSelected} ${isHovered}`}
         onClick={(ev) => this.onClosePreventBubble(ev, id)}
         onMouseOver={() => onOverSpot(id)}
         >

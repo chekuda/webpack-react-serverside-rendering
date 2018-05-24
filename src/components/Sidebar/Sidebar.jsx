@@ -20,7 +20,7 @@ const Sidebar = ({
             spot={spot}
             spotToRender={true}
             spotSelected={spot.id === spotSelected ? 'selected' : ''}
-            spotHovered={spotHovered}
+            isHovered={spot.id === spotHovered ? 'onOver' : '' }
             onSpotClicked={onSpotClicked}
             onClickClose={onSpotClicked}
             onOverSpot={onOverSpot}

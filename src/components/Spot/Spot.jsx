@@ -38,6 +38,7 @@ class Spot extends Component {
           spot={spot}
           spotToRender={spotSelected === spot.id }
           onClickClose={onSpotClicked}
+          isHovered={false}
           scrollMap={true}
         />
         <div
