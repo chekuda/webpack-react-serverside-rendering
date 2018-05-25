@@ -17,7 +17,7 @@ const Sidebar = ({
       spots.map((spot, index) => {
         return (
           <SpotCard
-            key={index}
+            key={spot.id}
             from='sidebar-container'
             spot={spot}
             spotToRender={true}
