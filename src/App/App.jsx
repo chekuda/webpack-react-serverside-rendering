@@ -158,7 +158,7 @@ class App extends Component {
           >
           { this.allSpots.map((spot, index) => (
               <Transition
-                key={index}
+                key={spot.id}
                 lat={spot.lat}
                 lng={spot.lng}
                 in={this.state.spotsToRender.includes(spot)}
