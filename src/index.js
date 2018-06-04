@@ -1,19 +1,26 @@
 import React from 'react'
 import { hydrate } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import { Provider } from 'react-redux'
 
 import reset from 'reset-css'
 import 'bootstrap-4-grid/css/grid.css'
 import 'font-awesome/css/font-awesome.min.css'
 
 import App from './App'
+import configureStore from './redux/configureStore'
+import initialState from './redux/configureStore/initialState'
 
 import './index.css'
+
+const store = configureStore(window.__INITIAL_STORE__)
 
 const render = Component => {
   hydrate(
     <AppContainer>
-      <Component />
+      <Provider store={store}>
+        <Component />
+      </Provider>
     </AppContainer>,
       document.getElementById('root')
   )

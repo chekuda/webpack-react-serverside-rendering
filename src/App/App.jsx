@@ -2,33 +2,27 @@ import React, { Component } from 'react'
 import GoogleMap from 'google-map-react'
 import { fitBounds } from 'google-map-react/utils'
 import Transition from 'react-transition-group/Transition'
+import { connect } from 'react-redux'
 
 import Spot from '../components/Spot'
 import Sidebar from '../components/Sidebar'
 import SpotList from '../../server/dummySpots'
 import getOffset from '../helpers'
+import { spotSelection } from '../redux/mapReducer'
 
 import './App.css'
-
-const DefaultProps = {
-  center: {
-    lat: 8.41,
-    lng: 10.84
-  },
-  zoom: 6
-}
 
 const getMin = (arr) => Math.min(...arr)
 const getMax = (arr) => Math.max(...arr)
 
 
-class App extends Component {
+export class App extends Component {
   constructor(props){
     super(props)
 
-    this.continentSelected = this.props.continentSelected || 'europe'
+    this.continentSelected = this.props.mapState.continentSelected
     this.mapContainer = React.createRef()
-    this.allSpots = SpotList()[this.continentSelected]
+    this.allSpots = SpotList()[this.continentSelected] || []
     this.defaultMapProps = this.setDefaultProps()
     this.hasBeenRendered = false // To avoid first googleMap rendering bounce
     this.state = {
@@ -42,7 +36,7 @@ class App extends Component {
   }
 
   setDefaultProps() {
-    if(this.allSpots.length) {
+    if(this.allSpots.length > 0) {
       return {
         center: {
           lat: this.allSpots[0].lat,
@@ -51,7 +45,7 @@ class App extends Component {
         zoom: 6
       }
     }
-    return DefaultProps
+    return this.props.mapState
   }
 
   setFirstViewMap(spots, size) {
@@ -73,6 +67,8 @@ class App extends Component {
   }
 
   componentDidMount(){
+    if(this.allSpots.length === 0) return
+
     const size = {
       width: this.mapContainer.current.offsetWidth,
       height: this.mapContainer.current.offsetHeight
@@ -138,6 +134,10 @@ class App extends Component {
   }
 
   handleSpotSeleted = (id) => {
+    const { spotSelection } = this.props
+
+    spotSelection({ spotSelected: id })
+
      this.setState({
       spotSelected: id
      })
@@ -200,4 +200,15 @@ class App extends Component {
   }
 }
 
-export default App
+const mapDispatchToProps = (dispatch) => ({
+  spotSelection: (spot) => dispatch(spotSelection(spot))
+})
+
+const mapStateToProps = ({ mapReducer }) => ({
+  mapState: mapReducer
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
