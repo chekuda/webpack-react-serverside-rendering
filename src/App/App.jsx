@@ -8,7 +8,7 @@ import Spot from '../components/Spot'
 import Sidebar from '../components/Sidebar'
 import SpotList from '../../server/dummySpots'
 import getOffset from '../helpers'
-import { spotSelection } from '../redux/mapReducer'
+import { spotSelection, setMapView } from '../redux/mapReducer'
 
 import './App.css'
 
@@ -21,31 +21,14 @@ export class App extends Component {
     super(props)
 
     this.continentSelected = this.props.mapState.continentSelected
-    this.mapContainer = React.createRef()
     this.allSpots = SpotList()[this.continentSelected] || []
-    this.defaultMapProps = this.setDefaultProps()
-    this.hasBeenRendered = false // To avoid first googleMap rendering bounce
     this.state = {
       spotsToRender: this.allSpots,
-      center: this.defaultMapProps.center,
-      zoom: this.defaultMapProps.zoom,
       cachedSpotSelected: null
     }
+    this.mapContainer = React.createRef()
     this.myMap = React.createRef()
     this.mySpot = React.createRef()
-  }
-
-  setDefaultProps() {
-    if(this.allSpots.length > 0) {
-      return {
-        center: {
-          lat: this.allSpots[0].lat,
-          lng: this.allSpots[0].lng
-        },
-        zoom: 6
-      }
-    }
-    return this.props.mapState
   }
 
   setFirstViewMap(spots, size) {
@@ -69,33 +52,29 @@ export class App extends Component {
   componentDidMount(){
     if(this.allSpots.length === 0) return
 
+    const { setMapView } = this.props
+
     const size = {
       width: this.mapContainer.current.offsetWidth,
       height: this.mapContainer.current.offsetHeight
     }
     const { zoom, center } = this.setFirstViewMap(this.state.spotsToRender, size)
-    this.setState({
-      center,
-      zoom: zoom
-    })
+
+    setMapView({ center, zoom })
   }
 
   setSpotsToRender = ({ zoom, center, bounds }) => {
-    if(!this.hasBeenRendered){
-      this.hasBeenRendered = true
-    } else {
-      const newSpotsToRender = this.allSpots
-        .filter(ele =>
-          ele.lat < bounds.ne.lat &&
-          ele.lat > bounds.se.lat &&
-          ele.lng > bounds.nw.lng &&
-          ele.lng < bounds.se.lng
-        )
+    const newSpotsToRender = this.allSpots
+      .filter(ele =>
+        ele.lat < bounds.ne.lat &&
+        ele.lat > bounds.se.lat &&
+        ele.lng > bounds.nw.lng &&
+        ele.lng < bounds.se.lng
+      )
 
-      this.setState({
-        spotsToRender: newSpotsToRender
-      })
-    }
+    this.setState({
+      spotsToRender: newSpotsToRender
+    })
   }
 
   handleSpotHovered = (id) => {
@@ -105,11 +84,12 @@ export class App extends Component {
   }
 
   fitSpotCardOnMap = ({ top, right, left }) => {
-    let nCenter = null
+    const { setMapView, mapState } = this.props
+    let nCenter = undefined
     const mapRightDistance = this.myMap.current.boundingRect_.right
     const mapLeftDistance = this.myMap.current.boundingRect_.left
 
-    if(this.state.spotSelected !== this.state.cachedSpotSelected){
+    if(mapState.spotSelected !== this.state.cachedSpotSelected){
       const newRight = mapRightDistance - right
       const offsetHeight = top <= 20 ? top - 20 : 0
       const offSetRight = newRight <= 20 ? newRight - 20 : 0
@@ -117,17 +97,20 @@ export class App extends Component {
 
       if(offsetHeight || offSetLeft || offSetRight) {
         const offSetWidth = offSetRight < 0 ? offSetRight : offSetLeft
-        nCenter = getOffset(this.myMap.current.map_, offSetWidth, offsetHeight)
+        const nCenterCoors = getOffset(this.myMap.current.map_, offSetWidth, offsetHeight)
+        nCenter = {
+          lat: nCenterCoors.lat(),
+          lng: nCenterCoors.lng()
+        }
       }
 
-      this.setState({
-        cachedSpotSelected: this.state.spotSelected,
+
+      setMapView({
         center: nCenter
-          ? {
-            lat: nCenter.lat(),
-            lng: nCenter.lng()
-          }
-          : this.state.center
+      })
+
+      this.setState({
+        cachedSpotSelected: mapState.spotSelected
       })
     }
 
@@ -137,23 +120,20 @@ export class App extends Component {
     const { spotSelection } = this.props
 
     spotSelection({ spotSelected: id })
-
-     this.setState({
-      spotSelected: id
-     })
   }
 
   render() {
+    const { center, zoom, spotSelected } = this.props.mapState
+
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-xs-0 col-sm-8 googlemap-container" ref={this.mapContainer}>
           <GoogleMap
-            defaultCenter={this.state.center}
-            defaultZoom={this.state.zoom}
-            center={this.state.center}
+            defaultCenter={center}
+            defaultZoom={zoom}
+            center={center}
             onChange={this.setSpotsToRender}
-            onChildMouseUp={this.isWithinBounds}
             ref={this.myMap}
           >
           { this.allSpots.map((spot, index) => (
@@ -171,7 +151,7 @@ export class App extends Component {
                       status={status}
                       spot={spot}
                       fitSpotCardOnMap={this.fitSpotCardOnMap}
-                      spotSelected={this.state.spotSelected}
+                      spotSelected={spotSelected}
                       spotHovered={this.state.spotHovered}
                       onOverSpot={this.handleSpotHovered}
                       onSpotClicked={this.handleSpotSeleted}
@@ -186,7 +166,7 @@ export class App extends Component {
           <div className="col-xs-12 col-sm-4">
             <Sidebar
               title='Hikes'
-              spotSelected={this.state.spotSelected}
+              spotSelected={spotSelected}
               spots={this.state.spotsToRender}
               onOverSpot={this.handleSpotHovered}
               spotHovered={this.state.spotHovered}
@@ -201,7 +181,8 @@ export class App extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  spotSelection: (spot) => dispatch(spotSelection(spot))
+  spotSelection: (spot) => dispatch(spotSelection(spot)),
+  setMapView: (data) => dispatch(setMapView(data))
 })
 
 const mapStateToProps = ({ mapReducer }) => ({

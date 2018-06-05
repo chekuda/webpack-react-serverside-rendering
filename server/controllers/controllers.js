@@ -6,9 +6,10 @@ import App from '../../src/App/App'
 import initialState from '../redux/configureStore/initialState'
 import configureStore from '../../src/redux/configureStore'
 
-const store = configureStore(initialState(), 'isDev')
 
 const map = (req, res) => {
+  const store = configureStore(initialState(), 'isDev')
+
   const appToString =
     renderToString(
       <Provider store={store}>

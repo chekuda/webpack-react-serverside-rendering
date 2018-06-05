@@ -1,1 +1,1 @@
-export { default, spotSelection } from './mapReducer'
+export { default, spotSelection, setMapView } from './mapReducer'
