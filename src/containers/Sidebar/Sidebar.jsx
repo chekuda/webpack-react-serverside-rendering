@@ -21,17 +21,16 @@ export class Sidebar extends Component {
   }
 
   render() {
-    const { spots, fitSpotCardOnMap, sideBarState } = this.props
+    const { spots = [], fitSpotCardOnMap, sideBarState } = this.props
     const { spotHovered, spotSelected } = sideBarState
 
     return (
       <div className="sidebar-container">
         {
-          (spots || []).map((spot, index) => {
+          spots.map((spot, index) => {
             return (
               <SpotCard
                 key={spot.id}
-                from='sidebar-container'
                 spot={spot}
                 spotToRender={true}
                 spotSelected={spot.id === spotSelected ? 'selected' : ''}

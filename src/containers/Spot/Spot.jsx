@@ -46,9 +46,8 @@ export class Spot extends Component {
           spot={spot}
           spotToRender={spotSelected === spot.id }
           spotSelected={spot.id === spotSelected ? 'selected' : ''}
+          fitInMap={true}
           isHovered={false}
-          scrollMap={true}
-          from='spot-container'
           fitSpotCardOnMap={fitSpotCardOnMap}
         />
         <SpotLabel

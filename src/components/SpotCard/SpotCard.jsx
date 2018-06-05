@@ -35,21 +35,19 @@ class SpotCard extends Component {
     )
   }
 
-  dummyClick = () => {
-    return
-  }
+  noop = () => {}
 
   onClosePreventBubble = (ev, id) => {
-    const { onSpotClicked = this.dummyClick } = this.props
+    const { onSpotClicked = this.noop } = this.props
 
     ev.stopPropagation()
     onSpotClicked(id)
   }
 
   transitionHasEnded = ({ target }) => {
-    const { fitSpotCardOnMap, spotSelected, spot, from } = this.props
+    const { fitSpotCardOnMap, spotSelected, spot, fitInMap } = this.props
 
-    if(spotSelected === 'selected' && from === 'spot-container') {
+    if(spotSelected === 'selected' && fitInMap) {
       fitSpotCardOnMap(target.getBoundingClientRect())
     }
   }
@@ -60,11 +58,8 @@ class SpotCard extends Component {
       spotToRender,
       spotSelected = '',
       onClickClose,
-      from,
-      scrollMap,
-      onOverSpot = this.dummyClick,
-      isHovered,
-      fitSpotCardOnMap
+      onOverSpot = this.noop,
+      isHovered
     } = this.props
 
     const { dificulty = '', stars, text, imageList, maxAltitude, routes, id } = spot
@@ -79,7 +74,7 @@ class SpotCard extends Component {
         status =>
         <div
           ref={this.myCard}
-          className={`spotCard-container ${status} ${spotSelected} ${isHovered}`}
+          className={`spotCard ${status} ${spotSelected} ${isHovered}`}
           onClick={(ev) => this.onClosePreventBubble(ev, id)}
           onMouseOver={() => onOverSpot(id)}
         >

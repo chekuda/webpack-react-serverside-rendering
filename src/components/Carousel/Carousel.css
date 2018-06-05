@@ -1,10 +1,10 @@
-.carousel-container {
+.carousel {
   position: relative;
   display: flex;
   height: 200px;
   overflow: hidden;
 }
-.carousel-container .slide {
+.carousel .slide {
   position: absolute;
   top: 0;
   height: 200px;
@@ -14,59 +14,59 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.carousel-container .slide.exited {
+.carousel .slide.exited {
   opacity: 0;
 }
 
-.carousel-container .slide.exiting {
+.carousel .slide.exiting {
   opacity: 0;
 }
 
-.carousel-container .slide.entered {
+.carousel .slide.entered {
   opacity: 1;
 }
 
-.carousel-container .slide.entering {
+.carousel .slide.entering {
   opacity: 0.6;
 }
 
-.carousel-container .controls {
+.carousel .controls {
   position: absolute;
   width: 100%;
   top: 0;
   height: 100%;
 }
 
-.carousel-container .arrows {
+.carousel .arrows {
   display: flex;
   position: relative;
   height: 100%;
 }
 
-.carousel-container .arrows .left {
+.carousel .arrows .left {
   height: 100%;
   width: 40px;
   position: absolute;
   left: 0;
 }
 
-.carousel-container .arrows .left.onOver {
+.carousel .arrows .left.onOver {
   background-image: linear-gradient(90deg, rgba(53, 53, 53, 0.5), rgba(255, 255, 255, 0))
 }
 
-.carousel-container .arrows .right {
+.carousel .arrows .right {
   height: 100%;
   width: 40px;
   position: absolute;
   right: 0;
 }
 
-.carousel-container .arrows .right.onOver {
+.carousel .arrows .right.onOver {
   background: linear-gradient(-90deg, rgba(53, 53, 53, 0.5), rgba(255, 255, 255, 0))
 }
 
 
-.carousel-container .arrows .fa-angle-left {
+.carousel .arrows .fa-angle-left {
   cursor: pointer;
   position: absolute;
   left: 7px;
@@ -75,7 +75,7 @@
   transform: translateY(-50%);
   color: #fff;
 }
-.carousel-container .arrows .fa-angle-right {
+.carousel .arrows .fa-angle-right {
   cursor: pointer;
   position: absolute;
   right: 7px;

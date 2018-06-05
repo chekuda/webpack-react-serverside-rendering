@@ -46,7 +46,7 @@ class Carousel extends Component {
 
   render() {
     return(
-      <div className="carousel-container"
+      <div className="carousel"
         onMouseOver={this.displayShadow}
         onMouseLeave={this.removeShadow}
       >
