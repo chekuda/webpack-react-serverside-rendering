@@ -13,14 +13,20 @@ const SpotLabel = ({
     <div
         className={`spotLabel ${status} ${spotHovered === spot.id ? 'onover' : ''}`}
         onMouseOver={() => onOverSpot(spot.id)}
-        onMouseLeave={() => onOverSpot()}
+        onMouseLeave={() => onOverSpot(undefined)}
       >
-      <div className="area stars">
-        {spot.stars} <i className="fa fa-star" aria-hidden="true"></i>
-      </div>
-      <div className="area dificulty">
-        <i className={`fa fa-signal ${spot.dificulty}`}></i>
-      </div>
+      {
+        spot.stars &&
+          <div className="area stars">
+            {spot.stars} <i className="fa fa-star" aria-hidden="true"></i>
+          </div>
+      }
+      {
+        spot.dificulty &&
+          <div className="area dificulty">
+            <i className={`fa fa-signal ${spot.dificulty}`}></i>
+          </div>
+      }
     </div>
   )
 
