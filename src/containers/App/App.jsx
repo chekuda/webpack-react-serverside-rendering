@@ -4,11 +4,11 @@ import { fitBounds } from 'google-map-react/utils'
 import Transition from 'react-transition-group/Transition'
 import { connect } from 'react-redux'
 
-import Spot from '../components/Spot'
-import Sidebar from '../components/Sidebar'
-import SpotList from '../../server/dummySpots'
-import getOffset from '../helpers'
-import { spotSelection, setMapView } from '../redux/mapReducer'
+import Spot from '../Spot'
+import Sidebar from '../Sidebar'
+import SpotList from '../../../server/dummySpots'
+import getOffset from '../../helpers'
+import { spotSelection, setMapView } from '../../redux/mapReducer'
 
 import './App.css'
 
@@ -77,12 +77,6 @@ export class App extends Component {
     })
   }
 
-  handleSpotHovered = (id) => {
-    this.setState({
-      spotHovered: id
-    })
-  }
-
   fitSpotCardOnMap = ({ top, right, left }) => {
     const { setMapView, mapState } = this.props
     let nCenter = undefined
@@ -116,14 +110,8 @@ export class App extends Component {
 
   }
 
-  handleSpotSeleted = (id) => {
-    const { spotSelection } = this.props
-
-    spotSelection({ spotSelected: id })
-  }
-
   render() {
-    const { center, zoom, spotSelected } = this.props.mapState
+    const { center, zoom } = this.props.mapState
 
     return (
       <div className="container-fluid">
@@ -151,10 +139,6 @@ export class App extends Component {
                       status={status}
                       spot={spot}
                       fitSpotCardOnMap={this.fitSpotCardOnMap}
-                      spotSelected={spotSelected}
-                      spotHovered={this.state.spotHovered}
-                      onOverSpot={this.handleSpotHovered}
-                      onSpotClicked={this.handleSpotSeleted}
                     />
                   )
                 }
@@ -166,11 +150,7 @@ export class App extends Component {
           <div className="col-xs-12 col-sm-4">
             <Sidebar
               title='Hikes'
-              spotSelected={spotSelected}
               spots={this.state.spotsToRender}
-              onOverSpot={this.handleSpotHovered}
-              spotHovered={this.state.spotHovered}
-              onSpotClicked={this.handleSpotSeleted}
               fitSpotCardOnMap={this.fitSpotCardOnMap}
             />
           </div>

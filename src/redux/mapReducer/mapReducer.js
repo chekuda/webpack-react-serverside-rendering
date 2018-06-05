@@ -1,4 +1,5 @@
 export const SPOT_SELECTION = 'mapReducer/SPOT_SELECTION'
+export const SPOT_HOVERED = 'mapReducer/SPOT_HOVERED'
 export const SET_MAP_VIEW = 'mapReducer/SET_MAP_VIEW'
 
 export const spotSelection = ({ spotSelected }) => {
@@ -6,6 +7,15 @@ export const spotSelection = ({ spotSelected }) => {
     type: SPOT_SELECTION,
     payload: {
       spotSelected
+    }
+  }
+}
+
+export const spotHovered = ({ spotHovered }) => {
+  return {
+    type: SPOT_HOVERED,
+    payload: {
+      spotHovered
     }
   }
 }
@@ -28,6 +38,13 @@ const reducer = (state = {}, action = {}) => {
       return {
         ...state,
         spotSelected
+      }
+    case SPOT_HOVERED:
+      const { spotHovered } = action.payload
+
+      return {
+        ...state,
+        spotHovered
       }
     case SET_MAP_VIEW:
       const { center, zoom } = action.payload

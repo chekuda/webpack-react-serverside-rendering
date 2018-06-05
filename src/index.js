@@ -7,7 +7,7 @@ import reset from 'reset-css'
 import 'bootstrap-4-grid/css/grid.css'
 import 'font-awesome/css/font-awesome.min.css'
 
-import App from './App'
+import App from './containers/App'
 import configureStore from './redux/configureStore'
 import initialState from './redux/configureStore/initialState'
 
@@ -29,8 +29,8 @@ const render = Component => {
 render(App)
 
 if(module.hot) {
-  module.hot.accept('./App', () => {
-    const App = require('./App').default;
+  module.hot.accept('./containers/App', () => {
+    const App = require('./containers/App').default;
     render(App)
   })
 }

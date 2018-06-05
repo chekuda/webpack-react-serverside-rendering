@@ -2,7 +2,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 
-import App from '../../src/App/App'
+import App from '../../src/containers/App/App'
 import initialState from '../redux/configureStore/initialState'
 import configureStore from '../../src/redux/configureStore'
 
