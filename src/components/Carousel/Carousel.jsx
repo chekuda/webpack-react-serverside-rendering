@@ -49,6 +49,9 @@ class Carousel extends Component {
       <div className="carousel"
         onMouseOver={this.displayShadow}
         onMouseLeave={this.removeShadow}
+        style={{
+          display: this.slides.length ? 'flex' : 'none'
+        }}
       >
         {
           this.slides.map((ele, index) => (
@@ -59,7 +62,7 @@ class Carousel extends Component {
             >
               {
                 status =>
-                  <div key={index} className={`slide ${status}`} style={{ backgroundImage: `url(${ele}`}}></div>
+                  <div key={index} className={`slide ${status}`} style={{ backgroundImage: `url(${ele})`}}></div>
               }
             </Transition>
             )
