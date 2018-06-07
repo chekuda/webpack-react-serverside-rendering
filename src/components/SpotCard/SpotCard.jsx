@@ -37,7 +37,7 @@ class SpotCard extends Component {
 
   noop = () => {}
 
-  onClosePreventBubble = (ev, id) => {
+  onClickPreventBubble = (ev, id) => {
     const { onSpotClicked = this.noop } = this.props
 
     ev.stopPropagation()
@@ -45,7 +45,7 @@ class SpotCard extends Component {
   }
 
   transitionHasEnded = ({ target }) => {
-    const { fitSpotCardOnMap, spotSelected, spot, fitInMap } = this.props
+    const { fitSpotCardOnMap, spotSelected, fitInMap } = this.props
 
     if(spotSelected === 'selected' && fitInMap) {
       fitSpotCardOnMap(target.getBoundingClientRect())
@@ -75,7 +75,7 @@ class SpotCard extends Component {
         <div
           ref={this.myCard}
           className={`spotCard ${status} ${spotSelected} ${isHovered}`}
-          onClick={(ev) => this.onClosePreventBubble(ev, id)}
+          onClick={(ev) => this.onClickPreventBubble(ev, id)}
           onMouseOver={() => onOverSpot(id)}
         >
           <div className="close" onClick={onClickClose}>
@@ -86,8 +86,8 @@ class SpotCard extends Component {
           </div>
           <div className="info">
             <div className="area name">{text}</div>
-            <div className="area">Max-hight: {maxAltitude}</div>
-            <div className="area">Routes: {routes}</div>
+            <div className="area hight">Max-hight: {maxAltitude}</div>
+            <div className="area routes">Routes: {routes}</div>
             <div className="rates">
               {this.drawStars(stars)}
               <div className='area dificulty'>
