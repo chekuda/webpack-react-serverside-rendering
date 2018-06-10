@@ -49,6 +49,7 @@ export class Spot extends Component {
           fitInMap={true}
           isHovered={false}
           fitSpotCardOnMap={fitSpotCardOnMap}
+          onClickClose={this.handleSpotSeleted}
         />
         <SpotLabel
           spot={spot}

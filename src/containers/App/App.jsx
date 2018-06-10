@@ -162,7 +162,8 @@ export class App extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   spotSelection: (spot) => dispatch(spotSelection(spot)),
-  setMapView: (data) => dispatch(setMapView(data))
+  setMapView: (data) => dispatch(setMapView(data)),
+  spotHovered: (spot) => dispatch(spotHovered(spot))
 })
 
 const mapStateToProps = ({ mapReducer }) => ({
