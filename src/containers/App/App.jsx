@@ -124,7 +124,8 @@ export class App extends Component {
             onChange={this.setSpotsToRender}
             ref={this.myMap}
           >
-          { this.allSpots.map((spot, index) => (
+          {
+            this.allSpots.map((spot, index) => (
               <Transition
                 key={spot.id}
                 lat={spot.lat}
@@ -143,7 +144,8 @@ export class App extends Component {
                   )
                 }
               </ Transition>
-            ))
+              )
+            )
           }
           </GoogleMap>
           </div>
