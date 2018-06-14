@@ -3,13 +3,11 @@ import { hydrate } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 
-import reset from 'reset-css'
 import 'bootstrap-4-grid/css/grid.css'
 import 'font-awesome/css/font-awesome.min.css'
 
 import App from './containers/App'
 import configureStore from './redux/configureStore'
-import initialState from './redux/configureStore/initialState'
 
 import './index.css'
 

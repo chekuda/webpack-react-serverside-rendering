@@ -8,7 +8,7 @@ import configureStore from '../../src/redux/configureStore'
 
 
 const map = (req, res) => {
-  const store = configureStore(initialState(), 'isDev')
+  const store = configureStore(initialState())
 
   const appToString =
     renderToString(

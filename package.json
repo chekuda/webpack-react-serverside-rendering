@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ENV=dev node ./server",
-    "dev": "ENV=dev webpack --mode development --hot",
+    "dev": "ENV=dev webpack --hot",
     "prod": "ENV=prod webpack --mode production",
     "test:jest:watch": "jest --watch",
     "test:jest": "jest"
@@ -47,7 +47,6 @@
     "react-redux": "^5.0.7",
     "react-transition-group": "^2.3.1",
     "redux": "^4.0.0",
-    "reset-css": "^3.0.0",
     "shortid": "^2.2.8",
     "transform-runtime": "0.0.0",
     "webpack": "^4.8.3",
