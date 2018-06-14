@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 
 import App from '../../src/containers/App/App'
-import initialState from '../redux/configureStore/initialState'
+import initialState from '../../src/redux/configureStore/initialState'
 import configureStore from '../../src/redux/configureStore'
 
 
