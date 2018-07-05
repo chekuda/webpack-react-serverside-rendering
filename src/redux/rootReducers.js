@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 
-import mapReducer from './mapReducer'
+import map from './reducers/map'
+import spots from './reducers/spots'
 
 const rootReducers = combineReducers({
-  mapReducer
+  map,
+  spots
 })
 
 export default rootReducers

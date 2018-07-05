@@ -1,25 +1,32 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
+import serializeJS from 'serialize-javascript'
 
-import App from '../../src/containers/App/App'
-import initialState from '../../src/redux/configureStore/initialState'
+import CustomGoogleMap from '../../src/containers/CustomGoogleMap'
 import configureStore from '../../src/redux/configureStore'
-
+import dummySpots from '../dummySpots'
 
 const map = (req, res) => {
-  const store = configureStore(initialState())
+  const initialState = {
+    spots: dummySpots(),
+    map: {
+      continentSelected: 'europe'
+    }
+  }
+
+  const store = configureStore(initialState)
 
   const appToString =
     renderToString(
       <Provider store={store}>
-        <App/>
+        <CustomGoogleMap/>
       </Provider>
     )
 
   const templateData = {
     initialHtml: appToString,
-    initialStore: JSON.stringify(store.getState())
+    initialStore: serializeJS(store.getState(), { isJSON: true })
   }
 
   res.render('index', templateData)

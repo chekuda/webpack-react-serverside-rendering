@@ -1,0 +1,217 @@
+.spot-container {
+
+  & .spotCard {
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    max-width: 200px;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);
+    transform: translate(-50%, -100%) scale(0);
+    transition: transform 0.2s ease-in-out;
+
+    &::before {
+      background-color: #fff;
+      content: "";
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      bottom: 0;
+      left: 50%;
+      box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+      transform: translate(-50%, 50%) rotate(45deg);
+    }
+
+    &.entering {
+      transform: translate(-50%, -100%) scale(0);
+    }
+
+    &.entered {
+      transform: translate(-50%, -100%) scale(1);
+      z-index: 3;
+    }
+  }
+}
+
+.sidebar-container {
+
+  & .spotCard {
+    display: flex;
+    padding: 10px 10px;
+    max-height: 100vh;
+    cursor: pointer;
+    transform: scale(0);
+
+    &-card {
+      width: 100%;
+    }
+    & .close {
+      display: none;
+    }
+
+    & .info {
+      display: flex;
+      flex-direction: column
+    }
+
+    & .rates {
+      position: absolute;
+      bottom: 5px;
+      right: 0;
+    }
+
+    &.selected {
+      background: rgba(102, 136, 63, 0.25);
+      box-shadow: inset 0px 0px 1px 1px rgba(102, 136, 63, 1);
+      border-radius: 5px;
+    }
+
+    &.onOver {
+      box-shadow: inset 0px 0px 1px 1px rgba(102, 136, 63, 1);
+      border-radius: 5px;
+    }
+
+    &.entering {
+      transform: scale(0);
+    }
+
+    &.entered {
+      transform: scale(1);
+      z-index: 3;
+    }
+  }
+}
+
+.spotCard {
+  background: #fff;
+  color: #8e8d8d;
+  min-width: 100%;
+  transition: transform 0.2s ease-in-out;
+
+  & .slider {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  & .info{
+    padding: 5px;
+  }
+
+  & .close {
+    position: absolute;
+    right: 1px;
+    font-size: 20px;
+    width: 20px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    z-index: 4;
+  }
+
+  & .area {
+    display: block;
+    margin: 5px 10px;
+  }
+
+  & .hight {
+    padding-top: 10px;
+  }
+
+  & .rates {
+    display: flex;
+  }
+
+  & .stars {
+    align-self: flex-end;
+    width: 100%;
+    font-size: 12px;
+  }
+
+  & .fa-star{
+    align-self: baseline;
+    font-size: 10px;
+    padding-left: 3px;
+    color: #e6c149;
+  }
+
+  & .dificulty {
+    align-self: flex-end;
+    font-size: 20px;
+  }
+
+  & .fa-signal {
+
+    &.easy {
+    color: #008000;
+    }
+
+    &.medium {
+      color: #fff008;
+    }
+
+    &.dificult {
+      color: #ff9508;
+    }
+
+    &.extreme {
+      color: #ff0000;
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+
+  .sidebar-container {
+
+    & .spotCard {
+      flex-wrap: wrap;
+    }
+  }
+
+  .spotCard {
+
+    & .slider {
+      width: 100%;
+      min-width: 200px;
+      max-width: 100%;
+    }
+
+    & .area {
+      display: block;
+      padding: 5px 10px 5px 5px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .spotCard {
+
+    & .slider {
+      min-width: 100%;
+    }
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  .sidebar-container {
+
+    & .spotCard {
+      flex-wrap: wrap;
+      min-width: 50%;
+
+      &-card {
+        width: 50%;
+      }
+    }
+  }
+
+  .spotCard {
+
+    & .slider {
+      width: 100%;
+      min-width: 200px;
+      max-width: 100%;
+    }
+  }
+}

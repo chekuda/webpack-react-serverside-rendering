@@ -6,13 +6,12 @@ import { Provider } from 'react-redux'
 import 'bootstrap-4-grid/css/grid.css'
 import 'font-awesome/css/font-awesome.min.css'
 
-import App from './containers/App'
+import CustomGoogleMap from './containers/CustomGoogleMap'
 import configureStore from './redux/configureStore'
 
-import './index.css'
+import './index.scss'
 
 const store = configureStore(window.__INITIAL_STORE__)
-console.log('STORE', store)
 
 const render = Component => {
   hydrate(
@@ -25,11 +24,11 @@ const render = Component => {
   )
 }
 
-render(App)
+render(CustomGoogleMap)
 
 if(module.hot) {
-  module.hot.accept('./containers/App', () => {
-    const App = require('./containers/App').default;
-    render(App)
+  module.hot.accept('./containers/CustomGoogleMap', () => {
+    const CustomGoogleMap = require('./containers/CustomGoogleMap').default;
+    render(CustomGoogleMap)
   })
 }
