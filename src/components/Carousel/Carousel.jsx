@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Transition from 'react-transition-group/Transition'
 
-import './Carousel.css'
+import './Carousel.scss'
 
 
 class Carousel extends Component {

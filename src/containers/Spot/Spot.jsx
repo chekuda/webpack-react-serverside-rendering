@@ -6,7 +6,7 @@ import { spotSelection, spotHovered } from '../../redux/mapReducer'
 import SpotCard from '../../components/SpotCard'
 import SpotLabel from '../../components/SpotLabel'
 
-import './Spot.css'
+import './Spot.scss'
 
 export class Spot extends Component {
   constructor(props) {

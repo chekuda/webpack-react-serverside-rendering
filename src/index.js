@@ -12,6 +12,7 @@ import configureStore from './redux/configureStore'
 import './index.css'
 
 const store = configureStore(window.__INITIAL_STORE__)
+console.log('STORE', store)
 
 const render = Component => {
   hydrate(

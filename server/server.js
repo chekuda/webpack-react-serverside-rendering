@@ -11,7 +11,7 @@ if(process.env.ENV !== 'prod') {
   require('./middleware/expresswebpack.js').default(server)
 }
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 3000
 
 const exphbsConfig = {
   defaultLayout: 'index',

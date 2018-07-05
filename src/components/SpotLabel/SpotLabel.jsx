@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import SpotCard from '../SpotCard'
 
-import './SpotLabel.css'
+import './SpotLabel.scss'
 
 const SpotLabel = ({
   spot,

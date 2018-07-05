@@ -3,7 +3,7 @@ import Transition from 'react-transition-group/Transition'
 
 import Carousel from '../Carousel'
 
-import './SpotCard.css'
+import './SpotCard.scss'
 
 class SpotCard extends Component {
   constructor(props){

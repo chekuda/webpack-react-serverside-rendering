@@ -5,7 +5,7 @@ import { spotSelection, spotHovered } from '../../redux/mapReducer'
 
 import SpotCard from '../../components/SpotCard'
 
-import './Sidebar.css'
+import './Sidebar.scss'
 
 export class Sidebar extends Component {
   handleSpotSeleted = (id) => {
