@@ -23,7 +23,16 @@ module.exports = {
         use: [
           'extracted-loader',
           MiniCssExtraPlugin.loader,
-          'css-loader'
+          'css-loader',
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'extracted-loader',
+          MiniCssExtraPlugin.loader,
+          'css-loader',
+          'sass-loader?sourceMap'
         ]
       },
       { // In order to use FontAwesome

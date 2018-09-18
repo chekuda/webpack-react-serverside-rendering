@@ -135,5 +135,67 @@
         ]
       }
     ```
+## Redux
 
+- Install redux and react-redux
+- Create a redux folder with all redux configuration
+  - Create a rootReducer file (reducers) with gather all the reducers within your project and injected as first argument in your createStore
+  - Create your first reducer with Actions and types in the same file `duck style` (many different ways of setting up)
+- Create a file called configure store which received the initialState and return the store. This will be used as client and server side can receive diferent initialState and enhancers.
+  ```
+    const configureStore = (initState, isDev) => {
+      const thirdPartyEnhances =
+        isDev === 'isDev'
+        ? undefined
+        : window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
+      return createStore(
+        rootReducers,
+        initState,
+        thirdPartyEnhances
+      )
+    }
+  ```
+- Configure the store:
+  - BackEnd:
+    - The initialState will be added within the window object to be used by the clientSide therefore it will work faster, because react will have access immediately to this value so it will not have to wait.
+    ```
+    const store = configureStore(initialState(), 'isDev')
+
+    const map = (req, res) => {
+      const appToString =
+        renderToString(
+          <Provider store={store}>
+            <App/>
+          </Provider>
+        )
+
+      const templateData = {
+        initialHtml: appToString,
+        initialStore: JSON.stringify(store.getState())
+      }
+
+    ```
+  - FrontEnd: will only create the store with the `createStore` from the configureStore file and pass it to the `Provider`
+
+### Usage of store
+
+- When creating a container I need to connect it with the redux store so I will use `connect` from `react-redux`
+- When creating a connect I need to export it as default and passing the `store` and the `dispatch`
+
+```
+  const mapDispatchToProps = (dispatch) => ({
+  changeText: (text) => dispatch(changeText(text))
+  })
+
+  const mapStateToProps = ({ appReducer }) => ({
+    myState: appReducer
+  })
+
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App)
+
+```
 

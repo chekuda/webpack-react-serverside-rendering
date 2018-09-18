@@ -1,0 +1,87 @@
+.carousel {
+  position: relative;
+  display: flex;
+  height: 200px;
+  overflow: hidden;
+
+  & .slide {
+    position: absolute;
+    top: 0;
+    height: 200px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: opacity 0.3s ease-in-out;
+
+    &.exited {
+      opacity: 0;
+    }
+
+    &.exiting {
+      opacity: 0;
+    }
+
+    &.entered {
+      opacity: 1;
+    }
+
+    &.entering {
+      opacity: 0.6;
+    }
+  }
+
+  & .controls {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 100%;
+  }
+
+  & .arrows {
+    display: flex;
+    position: relative;
+    height: 100%;
+
+    & .left {
+      height: 100%;
+      width: 40px;
+      position: absolute;
+      left: 0;
+    }
+
+    & .left.onOver {
+      background-image: linear-gradient(90deg, rgba(53, 53, 53, 0.5), rgba(255, 255, 255, 0))
+    }
+
+    & .right {
+      height: 100%;
+      width: 40px;
+      position: absolute;
+      right: 0;
+    }
+
+    & .right.onOver {
+      background: linear-gradient(-90deg, rgba(53, 53, 53, 0.5), rgba(255, 255, 255, 0))
+    }
+
+    & .fa-angle-left {
+      cursor: pointer;
+      position: absolute;
+      left: 7px;
+      top: 50%;
+      font-size: 40px;
+      transform: translateY(-50%);
+      color: #fff;
+    }
+
+    & .fa-angle-right {
+      cursor: pointer;
+      position: absolute;
+      right: 7px;
+      top: 50%;
+      font-size: 40px;
+      transform: translateY(-50%);
+      color: #fff;
+    }
+  }
+}

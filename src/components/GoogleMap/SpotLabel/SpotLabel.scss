@@ -1,0 +1,76 @@
+.spotLabel {
+  opacity: 0;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+  background: #ADB6BB;
+  border-radius: 5px;
+  border: solid 2px #fff;
+  padding: 5px 5px;
+  cursor: pointer;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -100%);
+  transition: opacity 0.5s ease-in-out;
+
+  &::before {
+    background-color: #ADB6BB;
+    content: "";
+    border-bottom: solid 2px;
+    border-right: solid 2px;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    bottom: -1px;
+    left: 50%;
+    transform: translate(-50%, 50%) rotate(45deg);
+  }
+
+  &.entering {
+    opacity: 0;
+  }
+
+  &.entered {
+    opacity: 1;
+  }
+
+  &.onover {
+    background: #45525D;
+
+    &::before {
+      background-color:#45525D;
+    }
+  }
+
+  & .area {
+    padding: 0 5px;
+  }
+
+  & .stars {
+    display: flex;
+    align-items: baseline;
+    color: #fff44e
+  }
+
+  & .fa-signal {
+
+    &.easy {
+      color: #008000;
+    }
+
+    &.medium {
+      color: #fff008;
+    }
+
+    &.dificult {
+      color: #ff9508;
+    }
+
+    &.extreme {
+      color: #ff0000;
+    }
+  }
+}
